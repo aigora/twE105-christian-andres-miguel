@@ -1,1 +1,9 @@
-
+# Supermercado
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+int main()
+{
+char lugar[30];
+printf("Bienvido a nuestro supermecado, tenemos varias seccion donde usted podra comprar.\nDesea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
+scanf("%s",lugar);

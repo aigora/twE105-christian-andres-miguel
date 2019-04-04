@@ -13,7 +13,7 @@ printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted pod
 scanf("%s",lugar);
 	do
 	{
-		printf("Perdon nuestro supermecadono no dipone de esa seccion.\nDonde desea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
+		printf("Perdon nuestro supermercadono no dipone de esa seccion.\nDonde desea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
 		scanf("%s",lugar);
 	}
 	while(strcmp(lugar,pan)!=0 && strcmp(lugar,pesc)!=0 && strcmp(lugar,frut)!=0 &&strcmp(lugar,carn)!=0);

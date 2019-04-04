@@ -3,21 +3,55 @@
 #include <math.h>
 int main()
 {
+	int fin=1;
+	int entendido;
 char lugar[30];
+char sn[2];//si o no
 char pan[]="panaderia";
 char pesc[] ="pescaderia";
 char frut[] ="fruteria";
 char carn[] ="carniceria";
-printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprar.\nDesea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
-int i=0;
-	do
-	{
-		if(i>0)
-		printf("Perdon nuestro supermercado no dipone de esa seccion.\nDonde desea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
-		scanf("%s",lugar);
-		i++;
-	
+printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n")
+
+while (fin!=0){
+
+	printf(" Desea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
+	scanf("%20s",lugar);
+	switch (lugar){
+		case 'panaderia':
+			printf("Elija el articulo que desee de la sección de panaderia\n");
+			break;
+		case 'pescaderia':
+			printf("Elija el articulo que desee de la sección de pescaderia\n");
+			break;
+		case 'fruteria':
+			printf("Elija el articulo que desee de la sección de fruteria\n");
+			break;
+		case 'carniceria':
+			printf("Elija el articulo que desee de la sección de carniceria\n");
+			break;
+		default:
+			printf("No tenemos esa seccion\n");
+			break;
 	}
-	while(strcmp(lugar,pan)!=0 && strcmp(lugar,pesc)!=0 && strcmp(lugar,frut)!=0 &&strcmp(lugar,carn)!=0);
+	
+	while (entendido=1){
+	
+	printf("Ha terminado su compra?  (si o no)\n");
+	scanf("%2s", sn );
+	switch (sn){
+		case 'si':
+			fin=0; entendido=0;
+			break;
+		case 'no':
+			fin=1; entendido=0; break;
+		default:
+			printf("No le he entendido, le preguntaremos de nuevo.\n")
+			break;
+	}
+	}	
+}
+printf("Compra finalizada");
 return 0;
+
 }

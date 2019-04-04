@@ -7,16 +7,13 @@ int main()
 	int entendido;
 char lugar[30];
 char sn[2];//si o no
-char pan[]="panaderia";
-char pesc[] ="pescaderia";
-char frut[] ="fruteria";
-char carn[] ="carniceria";
+
 printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n")
 
 while (fin!=0){
 
 	printf(" Desea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
-	scanf("%20s",lugar);
+	scanf("%30s",lugar);
 	switch (lugar){
 		case 'panaderia':
 			printf("Elija el articulo que desee de la sección de panaderia\n");
@@ -46,7 +43,7 @@ while (fin!=0){
 		case 'no':
 			fin=1; entendido=0; break;
 		default:
-			printf("No le he entendido, le preguntaremos de nuevo.\n")
+			printf("No le he entendido, le preguntaremos de nuevo.\n");
 			break;
 	}
 	}	

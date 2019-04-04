@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+int main()
+{
+char lugar[30];
+char pan[]="panaderia";
+char pesc[] ="pescaderia";
+char frut[] ="fruteria";
+char carn[] ="carniceria";
+printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprar.\nDesea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
+int i=0;
+	do
+	{
+		if(i>0)
+		printf("Perdon nuestro supermercado no dipone de esa seccion.\nDonde desea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
+		scanf("%s",lugar);
+		i++;
+	
+	}
+	while(strcmp(lugar,pan)!=0 && strcmp(lugar,pesc)!=0 && strcmp(lugar,frut)!=0 &&strcmp(lugar,carn)!=0);
+return 0;
+}

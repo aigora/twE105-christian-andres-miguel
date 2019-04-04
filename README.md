@@ -1,4 +1,4 @@
-# Título del trabajo
+# Supermercado
 Supermercado Etsidi
 ## Integrantes del equipo
 Christian Cabellos ccabellos, Andres de Diedo adiegor, Miguel Araque  miguelagonzalez

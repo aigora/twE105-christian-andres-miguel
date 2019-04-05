@@ -52,5 +52,5 @@ while (fin!=0){
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
 			}
 	}
-
+	printf("Hola oscar\n");
 }

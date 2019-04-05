@@ -5,27 +5,27 @@ int main()
 {
 	int fin=1;
 	int entendido;
-char lugar[30];
-char sn[2];//si o no
+char lugar;
+char sn;//si o no
 
-printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n")
+printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n");
 
 while (fin!=0){
 
-	printf(" Desea ir a la panaderia,pescaderia,fruteria o carniceria?\n");
-	scanf("%30s",lugar);
+	printf(" Desea ir a la panaderia(n),pescaderia(p),fruteria(f) o carniceria(c)?\n");
+	scanf("%c",&lugar);
 	switch (lugar){
-		case 'panaderia':
-			printf("Elija el articulo que desee de la sección de panaderia\n");
+		case 'n':
+			printf("Elija el articulo que desee de la seccion de panaderia\n");
 			break;
-		case 'pescaderia':
-			printf("Elija el articulo que desee de la sección de pescaderia\n");
+		case 'p':
+			printf("Elija el articulo que desee de la seccion de pescaderia\n");
 			break;
-		case 'fruteria':
-			printf("Elija el articulo que desee de la sección de fruteria\n");
+		case 'f':
+			printf("Elija el articulo que desee de la seccion de fruteria\n");
 			break;
-		case 'carniceria':
-			printf("Elija el articulo que desee de la sección de carniceria\n");
+		case 'c':
+			printf("Elija el articulo que desee de la seccion de carniceria\n");
 			break;
 		default:
 			printf("No tenemos esa seccion\n");
@@ -35,12 +35,12 @@ while (fin!=0){
 	while (entendido=1){
 	
 	printf("Ha terminado su compra?  (si o no)\n");
-	scanf("%2s", sn );
+	scanf("%2s", &sn );
 	switch (sn){
-		case 'si':
+		case 's':
 			fin=0; entendido=0;
 			break;
-		case 'no':
+		case 'n':
 			fin=1; entendido=0; break;
 		default:
 			printf("No le he entendido, le preguntaremos de nuevo.\n");
@@ -50,5 +50,4 @@ while (fin!=0){
 }
 printf("Compra finalizada");
 return 0;
-
 }

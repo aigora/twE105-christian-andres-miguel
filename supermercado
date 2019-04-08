@@ -4,7 +4,7 @@
 int main()
 {
 	int fin=1;
-	int entendido;
+	int entendido=1;
 char lugar;
 char sn[2];//si o no
 

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <stdlib.h>
 int main()
 {
 	int fin=1;
@@ -11,12 +10,12 @@ char sn;//si o no
 
 printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n");
 
-while (fin!=0){//Bucle para añadir mas articulos
-
-	printf(" Desea ir a la panaderia(n),pescaderia(p),fruteria(f) o carniceria(c)?\n");
-	scanf("%c",&lugar);
+while (fin!=0){
+	
+	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
+	scanf(" %c",&lugar);
 	switch (lugar){
-		case 'n':
+		case 'd':
 			printf("Elija el articulo que desee de la seccion de panaderia\n");
 			break;
 		case 'p':
@@ -31,24 +30,27 @@ while (fin!=0){//Bucle para añadir mas articulos
 		default:
 			printf("No tenemos esa seccion\n");
 			break;
+
 	}
-	
-	while (entendido=1){
+		entendido=1;
+		
+		while (entendido==1)
+	{
 	
 	printf("Ha terminado su compra?  (si o no)\n");
-	scanf("%2s", &sn );
-	switch (sn){
-		case 's':
+	scanf(" %c", &sn );
+		if (sn=='s')
+		{
 			fin=0; entendido=0;
-			break;
-		case 'n':
-			fin=1; entendido=0; break;
-		default:
-			printf("No le he entendido, le preguntaremos de nuevo.\n");
-			break;
+		}
+		else if(sn=='n')
+			{
+				fin=1; entendido=0;
+			}
+		else
+			{
+		printf("No le he entendido, le preguntaremos de nuevo.\n");
+			}
 	}
-	}	
 }
-printf("Compra finalizada");
-return 0;
 }

@@ -13,6 +13,7 @@ printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted pod
 while (fin!=0){
 	
 	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
+	fflush( stdin );
 	scanf(" %c",&lugar);
 	switch (lugar){
 		case 'd':
@@ -38,6 +39,7 @@ while (fin!=0){
 	{
 	
 	printf("Ha terminado su compra?  (si o no)\n");
+	fflush( stdin );
 	scanf(" %c", &sn );
 		if (sn=='s')
 		{

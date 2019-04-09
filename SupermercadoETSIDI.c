@@ -9,6 +9,11 @@ typedef struct{
 
 void printLista(productos nlista[10]);
 
+
+
+
+
+///
 int main()
 {
 int fin=1;
@@ -111,6 +116,12 @@ while (fin!=0){
 	}//Pregunta si quieres mas cosas
 }//acaba bucle elegir cosas
 }///acaba main
+
+
+
+
+
+
 
 
 

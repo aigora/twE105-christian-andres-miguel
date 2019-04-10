@@ -8,7 +8,7 @@ typedef struct{
 }productos;
 
 void printLista(productos nlista[10]);
-
+productos ListaCompra[10];
 
 
 
@@ -20,6 +20,8 @@ int fin=1;
 int entendido;
 char lugar;
 char sn;//si o no
+int i;
+int numeroProducto;
 
 productos lista_pan[10]={
 	{1,"pan blanco", 0.5},
@@ -80,18 +82,50 @@ while (fin!=0){
 		case 'd':
 			printf("Elija el articulo que desee de la seccion de panaderia\n");
 			printLista(lista_pan);
+			scanf("%i",&numeroProducto);
+			if (numeroProducto>0 && numeroProducto<11)
+			{
+			ListaCompra[i]=lista_pan[numeroProducto-1];
+			i++;//Apartar siguiente compra
+			}
+			else
+			printf("Numero incorrecto\n");
 			break;
 		case 'p':
 			printf("Elija el articulo que desee de la seccion de pescaderia\n");
 			printLista(lista_pescado);
+				scanf("%i",&numeroProducto);
+			if (numeroProducto>0 && numeroProducto<11)
+			{
+			ListaCompra[i]=lista_pescado[numeroProducto-1];
+			i++;//Apartar siguiente compra
+			}
+			else
+			printf("Numero incorrecto\n");
 			break;
 		case 'f':
 			printf("Elija el articulo que desee de la seccion de fruteria\n");
 			printLista(lista_fruta);
+			scanf("%i",&numeroProducto);
+			if (numeroProducto>0 && numeroProducto<11)
+			{
+			ListaCompra[i]=lista_fruta[numeroProducto-1];
+			i++;//Apartar siguiente compra
+			}
+			else
+			printf("Numero incorrecto\n");
 			break;
 		case 'c':
 			printf("Elija el articulo que desee de la seccion de carniceria\n");
 			printLista(lista_carne);
+			scanf("%i",&numeroProducto);
+			if (numeroProducto>0 && numeroProducto<11)
+			{
+			ListaCompra[i]=lista_carne[numeroProducto-1];
+			i++;//Apartar siguiente compra
+			}
+			else
+			printf("Numero incorrecto\n");
 			break;
 		default:
 			printf("No tenemos esa seccion\n");
@@ -115,6 +149,7 @@ while (fin!=0){
 			}
 	}//Pregunta si quieres mas cosas
 }//acaba bucle elegir cosas
+printLista(ListaCompra);
 }///acaba main
 
 

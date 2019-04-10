@@ -5,12 +5,15 @@ typedef struct{
 	int numero;
 	char nombre[40];
 	float precio;
+	int cantidad;
 }productos;
 
-void printLista(productos nlista[10]);
+void printLista(productos nlista[1000], int nelementos);
 productos ListaCompra[10];
 
+void precioTotal(productos nLista[1000], int nelementos);
 
+//void elegirCantidad(productos articulo, productos *p);
 
 
 ///
@@ -22,18 +25,19 @@ char lugar;
 char sn;//si o no
 int i;
 int numeroProducto;
+int nElementos;
 
 productos lista_pan[10]={
-	{1,"pan blanco", 0.5},
-	{2,"pan integral", 0.65},
-	{3,"pan de molde", 1.45},
-	{4,"palmerea de chocolate", 0.75},
-	{5,"bizcochon", 5.99},
-	{6,"kg de harina", 0.67},
-	{7,"azucar", 1.25},
-	{8,"sal",1.15},
-	{9,"napolitana", 1.05},
-	{10,"pan de semillas", 0.67}
+	{1,"pan blanco", 0.5, 0},
+	{2,"pan integral", 0.65, 0},
+	{3,"pan de molde", 1.45, 0},
+	{4,"palmerea de chocolate", 0.75, 0},
+	{5,"bizcochon", 5.99, 0},
+	{6,"kg de harina", 0.67, 0},
+	{7,"azucar", 1.25, 0},
+	{8,"sal",1.15,0},
+	{9,"napolitana", 1.05,0},
+	{10,"pan de semillas", 0.67,0}
 	};
 productos lista_pescado[10]={
 	{1,"dorada", 7.5},
@@ -74,18 +78,19 @@ productos lista_carne[10]={
 	printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n");
 
 while (fin!=0){
-	
+	nElementos++;
 	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
 	fflush( stdin );
 	scanf(" %c",&lugar);
 	switch (lugar){
 		case 'd':
 			printf("Elija el articulo que desee de la seccion de panaderia\n");
-			printLista(lista_pan);
+			printLista(lista_pan, 10);
 			scanf("%i",&numeroProducto);
 			if (numeroProducto>0 && numeroProducto<11)
 			{
 			ListaCompra[i]=lista_pan[numeroProducto-1];
+			ListaCompra[i].numero=nElementos;
 			i++;//Apartar siguiente compra
 			}
 			else
@@ -93,11 +98,12 @@ while (fin!=0){
 			break;
 		case 'p':
 			printf("Elija el articulo que desee de la seccion de pescaderia\n");
-			printLista(lista_pescado);
+			printLista(lista_pescado, 10);
 				scanf("%i",&numeroProducto);
 			if (numeroProducto>0 && numeroProducto<11)
 			{
 			ListaCompra[i]=lista_pescado[numeroProducto-1];
+			ListaCompra[i].numero=nElementos;
 			i++;//Apartar siguiente compra
 			}
 			else
@@ -105,11 +111,12 @@ while (fin!=0){
 			break;
 		case 'f':
 			printf("Elija el articulo que desee de la seccion de fruteria\n");
-			printLista(lista_fruta);
+			printLista(lista_fruta, 10);
 			scanf("%i",&numeroProducto);
 			if (numeroProducto>0 && numeroProducto<11)
 			{
 			ListaCompra[i]=lista_fruta[numeroProducto-1];
+			ListaCompra[i].numero=nElementos;
 			i++;//Apartar siguiente compra
 			}
 			else
@@ -117,11 +124,12 @@ while (fin!=0){
 			break;
 		case 'c':
 			printf("Elija el articulo que desee de la seccion de carniceria\n");
-			printLista(lista_carne);
+			printLista(lista_carne, 10);
 			scanf("%i",&numeroProducto);
 			if (numeroProducto>0 && numeroProducto<11)
 			{
 			ListaCompra[i]=lista_carne[numeroProducto-1];
+			ListaCompra[i].numero=nElementos;
 			i++;//Apartar siguiente compra
 			}
 			else
@@ -149,7 +157,9 @@ while (fin!=0){
 			}
 	}//Pregunta si quieres mas cosas
 }//acaba bucle elegir cosas
-printLista(ListaCompra);
+printLista(ListaCompra, nElementos);
+precioTotal(ListaCompra, nElementos);
+
 }///acaba main
 
 
@@ -161,14 +171,23 @@ printLista(ListaCompra);
 
 
 //funciones
-void printLista(productos lista[10]){
+void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 	int i=0;
-	printf("Numero\t Nombre\t Precio\n");
-	for (i=0; i<10; i++){
-		printf("%d\t %s\t %.2f\n",
-		        lista[i].numero, lista[i].nombre, lista[i].precio);
-		
-		
+	printf("Numero\t Nombre\t Precio\t Cantidad\n");
+	for (i=0; i<n; i++){
+		printf("%d\t %s\t %.2f\t %i\n",
+		        lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);	
 	}
 }
 
+void precioTotal(productos lista[1000], int n){
+	int i=0;
+	float sumaPrecio;
+	for (i=0; i<n; i++)
+		sumaPrecio=sumaPrecio+lista[i].precio;
+	printf("Total a pagar: %.2f\n", sumaPrecio);
+}
+
+//void elegirCantidad(productos nlista[1000], productos *p){
+//	printf()
+//}

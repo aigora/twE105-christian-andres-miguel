@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 typedef struct{
 	int numero;
 	char nombre[40];
@@ -13,7 +14,7 @@ productos ListaCompra[10];
 
 void precioTotal(productos nLista[1000], int nelementos);
 
-//void elegirCantidad(productos articulo, productos *p);
+//void elegirCantidad(productos nLista[1000], productos *p, int nElementos);
 
 
 ///
@@ -26,6 +27,7 @@ char sn;//si o no
 int i;
 int numeroProducto;
 int nElementos;
+productos *puntero;
 
 productos lista_pan[10]={
 	{1,"pan blanco", 0.5, 0},
@@ -86,15 +88,17 @@ while (fin!=0){
 		case 'd':
 			printf("Elija el articulo que desee de la seccion de panaderia\n");
 			printLista(lista_pan, 10);
-			scanf("%i",&numeroProducto);
-			if (numeroProducto>0 && numeroProducto<11)
-			{
-			ListaCompra[i]=lista_pan[numeroProducto-1];
-			ListaCompra[i].numero=nElementos;
-			i++;//Apartar siguiente compra
-			}
-			else
-			printf("Numero incorrecto\n");
+//				scanf("%i",&numeroProducto);
+//			if (numeroProducto>0 && numeroProducto<11)
+//			{
+//			ListaCompra[i]=lista_pan[numeroProducto-1];
+//			ListaCompra[i].numero=nElementos;
+//			i++;//Apartar siguiente compra
+//			}
+//			else
+//			printf("Numero incorrecto\n");
+			elegirCantidad(lista_pan, *puntero, nElementos);//Esta linea y la siguiente estan en pruebas
+			ListaCompra[i]=*puntero;
 			break;
 		case 'p':
 			printf("Elija el articulo que desee de la seccion de pescaderia\n");
@@ -188,6 +192,20 @@ void precioTotal(productos lista[1000], int n){
 	printf("Total a pagar: %.2f\n", sumaPrecio);
 }
 
-//void elegirCantidad(productos nlista[1000], productos *p){
-//	printf()
-//}
+
+void elegirCantidad(productos nlista[1000], productos *puntero, int nElementos ){
+	int numeroProducto, ncant;
+	printf("Pulse el numero del producto a elegir\n");
+	scanf(" %i",&numeroProducto);
+			if (numeroProducto>0 && numeroProducto<11)
+			{
+			puntero=&nlista[numeroProducto-1];//relleno los valores del puntero
+			puntero->numero=nElementos;//cambiamos una de sus propiedades
+			}
+			else
+			printf("Numero incorrecto\n");
+	printf("Indique la cantidad que necesite\n");
+	scanf(" %i", ncant);
+	puntero->cantidad=ncant;//seguimos cambiando las demas propiedades que necesitamos cambiar
+	puntero->precio=(puntero->precio*ncant);//ya esta listo
+}

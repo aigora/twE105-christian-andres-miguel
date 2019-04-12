@@ -29,6 +29,7 @@ int numeroProducto;
 int elementosComprados=0;
 productos ListaCompra[10];
 productos *lugarLista;
+lugarLista=ListaCompra;
 productos lista_pan[10]={
 	{1,"pan blanco", 0.5, 0},
 	{2,"pan integral", 0.65, 0},

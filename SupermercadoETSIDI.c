@@ -14,7 +14,7 @@ productos ListaCompra[10];
 
 void precioTotal(productos nLista[1000], int nelementos);
 
-//void elegirCantidad(productos nLista[1000], productos *p, int nElementos);
+void elegirCantidad(productos nLista[1000], productos *p, int nElementos);
 
 
 ///
@@ -97,7 +97,7 @@ while (fin!=0){
 //			}
 //			else
 //			printf("Numero incorrecto\n");
-			elegirCantidad(lista_pan, *puntero, nElementos);//Esta linea y la siguiente estan en pruebas
+			elegirCantidad(lista_pan, puntero, nElementos);//Esta linea y la siguiente estan en pruebas
 			ListaCompra[i]=*puntero;
 			break;
 		case 'p':

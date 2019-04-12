@@ -10,12 +10,12 @@ typedef struct{
 }productos;
 
 void printLista(productos nlista[1000], int nelementos);
-productos ListaCompra[10];
+//Funcion para imprimir lista
 
 void precioTotal(productos nLista[1000], int nelementos);
-
-void elegirCantidad(productos nLista[1000], productos *p, int nElementos);
-
+//Funcion que suma los precios de una lista
+void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);
+//Anade los elementos seleccionados a la lista final con sus respectivas cantidades
 
 ///
 int main()
@@ -26,9 +26,9 @@ char lugar;
 char sn;//si o no
 int i;
 int numeroProducto;
-int nElementos;
-productos *puntero;
-
+int elementosComprados=0;
+productos ListaCompra[10];
+productos *lugarLista;
 productos lista_pan[10]={
 	{1,"pan blanco", 0.5, 0},
 	{2,"pan integral", 0.65, 0},
@@ -80,7 +80,6 @@ productos lista_carne[10]={
 	printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n");
 
 while (fin!=0){
-	nElementos++;
 	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
 	fflush( stdin );
 	scanf(" %c",&lugar);
@@ -88,62 +87,28 @@ while (fin!=0){
 		case 'd':
 			printf("Elija el articulo que desee de la seccion de panaderia\n");
 			printLista(lista_pan, 10);
-//				scanf("%i",&numeroProducto);
-//			if (numeroProducto>0 && numeroProducto<11)
-//			{
-//			ListaCompra[i]=lista_pan[numeroProducto-1];
-//			ListaCompra[i].numero=nElementos;
-//			i++;//Apartar siguiente compra
-//			}
-//			else
-//			printf("Numero incorrecto\n");
-			elegirCantidad(lista_pan, puntero, nElementos);//Esta linea y la siguiente estan en pruebas
-			ListaCompra[i]=*puntero;
+			anadir_a_lista(lista_pan, (lugarLista+elementosComprados), elementosComprados);
 			break;
 		case 'p':
 			printf("Elija el articulo que desee de la seccion de pescaderia\n");
 			printLista(lista_pescado, 10);
-				scanf("%i",&numeroProducto);
-			if (numeroProducto>0 && numeroProducto<11)
-			{
-			ListaCompra[i]=lista_pescado[numeroProducto-1];
-			ListaCompra[i].numero=nElementos;
-			i++;//Apartar siguiente compra
-			}
-			else
-			printf("Numero incorrecto\n");
+			anadir_a_lista(lista_pescado, (lugarLista+elementosComprados), elementosComprados);
 			break;
 		case 'f':
 			printf("Elija el articulo que desee de la seccion de fruteria\n");
 			printLista(lista_fruta, 10);
-			scanf("%i",&numeroProducto);
-			if (numeroProducto>0 && numeroProducto<11)
-			{
-			ListaCompra[i]=lista_fruta[numeroProducto-1];
-			ListaCompra[i].numero=nElementos;
-			i++;//Apartar siguiente compra
-			}
-			else
-			printf("Numero incorrecto\n");
+			anadir_a_lista(lista_fruta, (lugarLista+elementosComprados), elementosComprados);
 			break;
 		case 'c':
 			printf("Elija el articulo que desee de la seccion de carniceria\n");
 			printLista(lista_carne, 10);
-			scanf("%i",&numeroProducto);
-			if (numeroProducto>0 && numeroProducto<11)
-			{
-			ListaCompra[i]=lista_carne[numeroProducto-1];
-			ListaCompra[i].numero=nElementos;
-			i++;//Apartar siguiente compra
-			}
-			else
-			printf("Numero incorrecto\n");
+			anadir_a_lista(lista_carne, (lugarLista+elementosComprados), elementosComprados);
 			break;
 		default:
 			printf("No tenemos esa seccion\n");
 			break;
 	}
-	
+	elementosComprados++;//Pasar a la siguiente posicion de la lista de la compra
 	entendido=1;	
 		while (entendido==1)
 	{
@@ -161,8 +126,8 @@ while (fin!=0){
 			}
 	}//Pregunta si quieres mas cosas
 }//acaba bucle elegir cosas
-printLista(ListaCompra, nElementos);
-precioTotal(ListaCompra, nElementos);
+printLista(ListaCompra, elementosComprados);
+precioTotal(ListaCompra, elementosComprados);
 
 }///acaba main
 
@@ -193,19 +158,19 @@ void precioTotal(productos lista[1000], int n){
 }
 
 
-void elegirCantidad(productos nlista[1000], productos *puntero, int nElementos ){
-	int numeroProducto, ncant;
-	printf("Pulse el numero del producto a elegir\n");
-	scanf(" %i",&numeroProducto);
-			if (numeroProducto>0 && numeroProducto<11)
-			{
-			*puntero=nlista[numeroProducto-1];//relleno los valores del puntero
-			puntero->numero=nElementos;//cambiamos una de sus propiedades
-			}
-			else
-			printf("Numero incorrecto\n");
-	printf("Indique la cantidad que necesite\n");
-	scanf(" %i", ncant);
-	puntero->cantidad=ncant;//seguimos cambiando las demas propiedades que necesitamos cambiar
-	puntero->precio=(puntero->precio*ncant);//ya esta listo
+void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)
+{
+	int numeroProducto,cantidad;
+	scanf("%i",&numeroProducto);
+
+	if (numeroProducto>0 && numeroProducto<11){
+		*lugarLista=nLista[numeroProducto-1];
+		lugarLista->numero=elementosComprados+1;
+		}
+	else
+		printf("Numero incorrecto\n");
+	printf("Escribe la cantidad necesitada\n");
+	scanf("%i",&cantidad);
+	lugarLista->cantidad=cantidad;
+	lugarLista->precio=cantidad*(lugarLista->precio);
 }

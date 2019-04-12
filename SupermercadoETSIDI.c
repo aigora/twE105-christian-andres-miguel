@@ -10,7 +10,7 @@ typedef struct{
 }productos;
 
 void printLista(productos nlista[1000], int nelementos);//Funcion para imprimir lista
-void precioTotal(productos nLista[1000], int nelementos);//Funcion que suma los precios de una lista
+void precioTotal(productos *lugarLista, int elementosComprados);//Funcion que suma los precios de una lista
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);//Anade los elementos seleccionados a la lista final con sus respectivas cantidades
 ///
 
@@ -124,7 +124,7 @@ while (fin!=0){
 	}//Pregunta si quieres mas cosas
 }//acaba bucle elegir cosas
 printLista(ListaCompra, elementosComprados);
-precioTotal(ListaCompra, elementosComprados);
+ precioTotal(lugarLista, elementosComprados);
 
 }///acaba main
 
@@ -144,11 +144,11 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 }
 
 
-void precioTotal(productos lista[1000], int n){
+void precioTotal(productos *lugarLista, int elementosComprados){
 	int i=0;
 	float sumaPrecio;
-	for (i=0; i<n; i++)
-	sumaPrecio=sumaPrecio+lista[i].precio;
+	for (i=0; i<elementosComprados; i++)
+	sumaPrecio=sumaPrecio+(lugarLista->precio);
 	printf("Total a pagar: %.2f\n", sumaPrecio);
 }
 

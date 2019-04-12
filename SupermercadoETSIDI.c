@@ -199,7 +199,7 @@ void elegirCantidad(productos nlista[1000], productos *puntero, int nElementos )
 	scanf(" %i",&numeroProducto);
 			if (numeroProducto>0 && numeroProducto<11)
 			{
-			puntero=&nlista[numeroProducto-1];//relleno los valores del puntero
+			*puntero=nlista[numeroProducto-1];//relleno los valores del puntero
 			puntero->numero=nElementos;//cambiamos una de sus propiedades
 			}
 			else

@@ -162,6 +162,7 @@ void precioTotal(productos lista[1000], int n){
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)
 {
 	int numeroProducto,cantidad;
+	int i,k=elementosComprados;
 	scanf("%i",&numeroProducto);//Te pide el numero del producto
 
 	if (numeroProducto>0 && numeroProducto<11){
@@ -170,8 +171,19 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 		}
 	else
 		printf("Numero incorrecto\n");
+	 if (elementosComprados>1)
+	{
+		for(i=k;i<0;i--)
+		{
+			if(*lugarLista.nombre==*(lugarLista.nombre+i))
+			{
+				*lugarLista=*(lugarLista+i);
+				elementosComprados--;
+			}
+		}
+	}
 	printf("Escribe la cantidad necesitada\n");
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
-	lugarLista->cantidad=cantidad;
-	lugarLista->precio=cantidad*(lugarLista->precio);
+	lugarLista->cantidad+=cantidad;
+	lugarLista->precio+=cantidad*(lugarLista->precio);
 }

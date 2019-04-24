@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -19,16 +18,23 @@ void precioTotal(productos nLista[1000], int nelementos);
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);
 //Anade los elementos seleccionados a la lista final con sus respectivas cantidades
 
-int main()
+int main(int argc, char** argv)
 {
 while(1)
 {
 system("cls");//Limpiar pantalla
+	time_t inicio;
+    time_t fint;
+    time_t delta;
+	
+    inicio = time(NULL);//comienza cronometro
 int fin=1;
 int entendido;
+int park;
 char lugar;
 char sn;//si o n
 int i;
+int precio;
 int numeroProducto;
 int elementosComprados=0;
 productos ListaCompra[10];
@@ -126,16 +132,47 @@ while (fin!=0){
 	fflush( stdin );
 	scanf(" %c", &sn );
 		if (sn=='s'){
-			fin=0; entendido=0;//Muestra la cantidad a pagar
+			fin=0; entendido=0;park=1;//Muestra la cantidad a pagar
 			lugarLista++;
 		}
 		else if(sn=='n'){
-				fin=1; entendido=0;//Vuelve a preguntar la seccion
+				fin=1; entendido=0;park=0;//Vuelve a preguntar la seccion
 			}
 		else{
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
 			}
 	}//Pregunta si quieres mas cosas
+	while(park==1)
+		{
+			printf("Ha usado parquing?  (si o no)\n");
+			fflush( stdin );
+			scanf(" %c", &sn );
+		if (sn=='s'){
+			fint = time(NULL);
+   			delta = fint - inicio;
+   			
+			if(delta>120){
+			printf("ha usado el parking durante %d segundos\n", delta);
+			precio=2+(delta-120)*0.005;
+			printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f",precio);
+			fin=0; entendido=0; park=0;
+			}
+		else{
+			printf("ha usado el parking durante %d segundos\n", delta);
+			precio=0;
+			printf("Al ser menos de dos minutos su uso es gratuito\n");
+			fin=0; entendido=0; park=0;
+			}
+		}
+		else if(sn=='n'){
+			fint = time(NULL);
+    		delta = fint - inicio;
+			fin=0; entendido=0; park=0;
+			}
+		else{
+		printf("No le he entendido, le preguntaremos de nuevo.\n");
+			}
+		}
 }//acaba bucle elegir cosas
 printLista(ListaCompra, elementosComprados);
 
@@ -159,13 +196,23 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 }
 void precioTotal(productos *lugarLista, int elementosComprados){//Funcion que imprime el precio total
 	int i=0;
-	float sumaPrecio=0;
+	float sumaPrecio=0;//cantidad que comprara cliente 
+	float paga=0;//cantidad que pagara el cliente
 	for (i=0; i<elementosComprados; i++)
 	{
 		sumaPrecio+=(lugarLista->precio);
 		lugarLista++;
 	}
 	printf("Total a pagar: %.2f\n", sumaPrecio);
+	printf("Pague querido cliente\n");
+	fflush( stdin );
+	scanf("%f",&paga);
+	while (paga<sumaPrecio)//mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
+	{
+		printf("La compra supera esa cantidad, introduce la cantidad a pagar\n");
+		scanf("%f",&paga);	
+	}
+	printf("Le devolvemos %.2f, tengo un buen dia\n",paga-sumaPrecio);//muestra la cantidad a devolver
 }
 
 

@@ -164,7 +164,7 @@ void precioTotal(productos *lugarLista, int elementosComprados){//Funcion que im
 
 
 
-void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)//Funcion que añade cada articulo a la lista de la compra
+void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)//Funcion que incrementa cada articulo a la lista de la compra
 {
 	int numeroProducto,cantidad;
 	int i=1;

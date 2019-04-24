@@ -140,7 +140,6 @@ while (fin!=0){
 printLista(ListaCompra, elementosComprados);
 
 precioTotal(ListaCompra, elementosComprados);
-sleep(10);
 }//while repetitivo
 }///acaba main
 
@@ -177,6 +176,7 @@ void precioTotal(productos *lugarLista, int elementosComprados){//Funcion que im
 		scanf("%f",&paga);	
 	}
 	printf("Le devolvemos %.2f, tengo un buen dia\n",paga-sumaPrecio);//muestra la cantidad a devolver
+	sleep(10);//Espera 10 segundos hasta el siguiente cliente
 }
 
 

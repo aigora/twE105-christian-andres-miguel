@@ -121,6 +121,7 @@ while (fin!=0){
 	scanf(" %c", &sn );
 		if (sn=='s'){
 			fin=0; entendido=0;
+			lugarLista++;
 		}
 		else if(sn=='n'){
 				fin=1; entendido=0;
@@ -150,8 +151,7 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 		lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);
 	}
 }
-
-
+//ARREGLAR ESTO PORQUE NO SUMA EL PRECIO BIEN
 void precioTotal(productos *lugarLista, int elementosComprados){
 	int i=0;
 	float sumaPrecio;
@@ -167,28 +167,19 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 {
 	int numeroProducto,cantidad;
 	int i,k=elementosComprados;
+	printf("Escoja el producto que quiera:\t");
 	scanf("%i",&numeroProducto);//Te pide el numero del producto
 
 	if (numeroProducto>0 && numeroProducto<11){
-		*lugarLista=nLista[numeroProducto-1];
+		*lugarLista=nLista[numeroProducto-1];//rellena el puntero lugarLista con los datos del producto seleccionado
 		lugarLista->numero=elementosComprados+1;
 		}
+	////HAY QUE ARREGLAR ESTE "else" PA QUE DE OTRA OPORTUNIDAD
 	else
 		printf("Numero incorrecto\n");
-
-	 if (elementosComprados>1)
-	{
-		for(i=k;i<0;i--)
-		{
-			if(*lugarLista.nombre==*(lugarLista.nombre+i))
-			{
-				*lugarLista=*(lugarLista+i);
-				elementosComprados--;
-			}
-		}
-	}
+	
 	printf("Escribe la cantidad necesitada\n");
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
 	lugarLista->cantidad+=cantidad;
-	lugarLista->precio+=cantidad*(lugarLista->precio);
+	lugarLista->precio=cantidad*(lugarLista->precio);
 }

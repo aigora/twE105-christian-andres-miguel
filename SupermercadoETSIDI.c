@@ -152,13 +152,13 @@ while (fin!=0){
    			delta = fint - inicio;
    			
 			if(delta>120){
-			printf("ha usado el parking durante %d segundos\n", delta);
+			printf("Ha usado el parking durante %d segundos\n", delta);
 			precio=2+(delta-120)*0.005;
 			printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f",precio);
 			fin=0; entendido=0; park=0;
 			}
 		else{
-			printf("ha usado el parking durante %d segundos\n", delta);
+			printf("Ha usado el parking durante %d segundos\n", delta);
 			precio=0;
 			printf("Al ser menos de dos minutos su uso es gratuito\n");
 			fin=0; entendido=0; park=0;

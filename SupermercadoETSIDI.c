@@ -168,18 +168,21 @@ void precioTotal(productos *lugarLista, int elementosComprados){
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)
 {
 	int numeroProducto,cantidad;
-	int i,k=elementosComprados;
+	int i=1;
 	printf("Escoja el producto que quiera:\t");
-	scanf("%i",&numeroProducto);//Te pide el numero del producto
+	while (i==1)
+	{
+		scanf("%i",&numeroProducto);//Te pide el numero del producto
 
-	if (numeroProducto>0 && numeroProducto<11){
-		*lugarLista=nLista[numeroProducto-1];//rellena el puntero lugarLista con los datos del producto seleccionado
-		lugarLista->numero=elementosComprados+1;
-		}
-	////HAY QUE ARREGLAR ESTE "else" PA QUE DE OTRA OPORTUNIDAD
-	else
-		printf("Numero incorrecto\n");
-	
+		if (numeroProducto>0 && numeroProducto<11){
+			*lugarLista=nLista[numeroProducto-1];//rellena el puntero lugarLista con los datos del producto seleccionado
+			lugarLista->numero=elementosComprados+1;
+			i=0;
+			}
+		////HAY QUE ARREGLAR ESTE "else" PA QUE DE OTRA OPORTUNIDAD
+		else
+			printf("Numero incorrecto, escriba en numero entre el 1 y el 10\n");
+	}
 	printf("Escribe la cantidad necesitada\n");
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
 	lugarLista->cantidad=cantidad;

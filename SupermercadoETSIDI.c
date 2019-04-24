@@ -18,8 +18,6 @@ void precioTotal(productos nLista[1000], int nelementos);
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);
 //Anade los elementos seleccionados a la lista final con sus respectivas cantidades
 
-///
-
 int main()
 {
 int fin=1;
@@ -121,11 +119,11 @@ while (fin!=0){
 	fflush( stdin );
 	scanf(" %c", &sn );
 		if (sn=='s'){
-			fin=0; entendido=0;
+			fin=0; entendido=0;//Muestra la cantidad a pagar
 			lugarLista++;
 		}
 		else if(sn=='n'){
-				fin=1; entendido=0;
+				fin=1; entendido=0;//Vuelve a preguntar la seccion
 			}
 		else{
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
@@ -152,7 +150,7 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 		lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);
 	}
 }
-void precioTotal(productos *lugarLista, int elementosComprados){
+void precioTotal(productos *lugarLista, int elementosComprados){//Funcion que imprime el precio total
 	int i=0;
 	float sumaPrecio=0;
 	for (i=0; i<elementosComprados; i++)
@@ -166,7 +164,7 @@ void precioTotal(productos *lugarLista, int elementosComprados){
 
 
 
-void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)
+void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)//Funcion que añade cada articulo a la lista de la compra
 {
 	int numeroProducto,cantidad;
 	int i=1;
@@ -180,7 +178,6 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 			lugarLista->numero=elementosComprados+1;
 			i=0;
 			}
-		////HAY QUE ARREGLAR ESTE "else" PA QUE DE OTRA OPORTUNIDAD
 		else
 			printf("Numero incorrecto, escriba en numero entre el 1 y el 10\n");
 	}

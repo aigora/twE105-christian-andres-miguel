@@ -21,6 +21,9 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 
 int main()
 {
+while(1)
+{
+system("cls");//Limpiar pantalla
 int fin=1;
 int entendido;
 char lugar;
@@ -137,7 +140,7 @@ while (fin!=0){
 printLista(ListaCompra, elementosComprados);
 
 precioTotal(ListaCompra, elementosComprados);
-
+}//while repetitivo
 }///acaba main
 
 

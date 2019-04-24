@@ -2,6 +2,8 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 typedef struct{
 	int numero;
 	char nombre[40];

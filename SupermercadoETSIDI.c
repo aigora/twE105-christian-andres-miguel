@@ -29,7 +29,7 @@ system("cls");//Limpiar pantalla
     time_t fint;
     time_t delta;
 	
-    inicio = time(NULL);//comienza cronometro
+    inicio = time(NULL);//Comienza cronometro
 int fin=1;
 int entendido;
 int park;
@@ -123,7 +123,7 @@ while (fin!=0){
 			break;
 		default:
 			printf("No tenemos esa seccion\n");
-			elementosComprados--;//evitamos la suma de un articulo nulo
+			elementosComprados--;//Evitamos la suma de un articulo nulo
 			break;
 	}
 	elementosComprados++;//Pasar a la siguiente posicion de la lista de la compra
@@ -175,12 +175,12 @@ while (fin!=0){
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
 			}
 		}
-}//acaba bucle elegir cosas
+}//Acaba bucle elegir cosas
 printLista(ListaCompra, elementosComprados);
 
 precioTotal(ListaCompra, elementosComprados, precioParking);
 }//while repetitivo
-}///acaba main
+}//Acaba main
 
 
 
@@ -198,8 +198,8 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 }
 void precioTotal(productos *lugarLista, int elementosComprados,float parking){//Funcion que imprime el precio total
 	int i=0;
-	float sumaPrecioProductos=0;//cantidad que comprara cliente 
-	float paga=0;//cantidad que pagara el cliente
+	float sumaPrecioProductos=0;//Cantidad que comprara cliente 
+	float paga=0;//Cantidad que pagara el cliente
 	for (i=0; i<elementosComprados; i++)
 	{
 		sumaPrecioProductos+=(lugarLista->precio);
@@ -209,12 +209,12 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking){//
 	printf("Pague querido cliente\n");
 	fflush( stdin );
 	scanf("%f",&paga);
-	while (paga<sumaPrecioProductos+parking)//mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
+	while (paga<sumaPrecioProductos+parking)//Mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
 	{
 		printf("La compra supera esa cantidad, introduce la cantidad a pagar\n");
 		scanf("%f",&paga);	
 	}
-	printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos+parking));//muestra la cantidad a devolver
+	printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos+parking));//Muestra la cantidad a devolver
 	sleep(10);
 }
 
@@ -231,8 +231,8 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 		scanf("%i",&numeroProducto);//Te pide el numero del producto
 
 		if (numeroProducto>0 && numeroProducto<11){
-			*lugarLista=nLista[numeroProducto-1];//rellena el puntero lugarLista con los datos del producto seleccionado
-			lugarLista->numero=elementosComprados+1;//cambia el numero del producto por el del numero de productos que lleves comprados
+			*lugarLista=nLista[numeroProducto-1];//Rellena el puntero lugarLista con los datos del producto seleccionado
+			lugarLista->numero=elementosComprados+1;//Cambia el numero del producto por el del numero de productos que lleves comprados
 			i=0;//Para salir del while
 			}
 		else

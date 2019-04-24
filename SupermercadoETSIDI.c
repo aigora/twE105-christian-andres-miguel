@@ -9,9 +9,15 @@ typedef struct{
 	int cantidad;
 }productos;
 
-void printLista(productos nlista[1000], int nelementos);//Funcion para imprimir lista
-void precioTotal(productos *lugarLista, int elementosComprados);//Funcion que suma los precios de una lista
-void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);//Anade los elementos seleccionados a la lista final con sus respectivas cantidades
+
+void printLista(productos nlista[1000], int nelementos);
+//Funcion para imprimir lista
+
+void precioTotal(productos nLista[1000], int nelementos);
+//Funcion que suma los precios de una lista
+void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);
+//Anade los elementos seleccionados a la lista final con sus respectivas cantidades
+
 ///
 
 int main()
@@ -26,6 +32,7 @@ int elementosComprados=0;
 productos ListaCompra[10];
 productos *lugarLista;
 
+lugarLista=ListaCompra;
 productos lista_pan[10]={
 	{1,"pan blanco", 0.5, 0},
 	{2,"pan integral", 0.65, 0},
@@ -124,7 +131,8 @@ while (fin!=0){
 	}//Pregunta si quieres mas cosas
 }//acaba bucle elegir cosas
 printLista(ListaCompra, elementosComprados);
- precioTotal(lugarLista, elementosComprados);
+
+precioTotal(ListaCompra, elementosComprados);
 
 }///acaba main
 
@@ -154,10 +162,12 @@ void precioTotal(productos *lugarLista, int elementosComprados){
 
 
 
+
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)
 {
 	int numeroProducto,cantidad;
-	scanf("%i",&numeroProducto);
+	int i,k=elementosComprados;
+	scanf("%i",&numeroProducto);//Te pide el numero del producto
 
 	if (numeroProducto>0 && numeroProducto<11){
 		*lugarLista=nLista[numeroProducto-1];
@@ -165,9 +175,20 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 		}
 	else
 		printf("Numero incorrecto\n");
-	printf("Escribe la cantidad necesitada\n");
-	scanf("%i",&cantidad);
-	lugarLista->cantidad=cantidad;
-	lugarLista->precio=cantidad*(lugarLista->precio);
 
+	 if (elementosComprados>1)
+	{
+		for(i=k;i<0;i--)
+		{
+			if(*lugarLista.nombre==*(lugarLista.nombre+i))
+			{
+				*lugarLista=*(lugarLista+i);
+				elementosComprados--;
+			}
+		}
+	}
+	printf("Escribe la cantidad necesitada\n");
+	scanf("%i",&cantidad);//Te pide la cantidad del producto
+	lugarLista->cantidad+=cantidad;
+	lugarLista->precio+=cantidad*(lugarLista->precio);
 }

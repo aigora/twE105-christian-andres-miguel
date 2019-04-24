@@ -110,6 +110,7 @@ while (fin!=0){
 			break;
 		default:
 			printf("No tenemos esa seccion\n");
+			elementosComprados--;//evitamos la suma de un articulo nulo
 			break;
 	}
 	elementosComprados++;//Pasar a la siguiente posicion de la lista de la compra

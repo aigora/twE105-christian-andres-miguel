@@ -159,8 +159,8 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 }
 void precioTotal(productos *lugarLista, int elementosComprados){//Funcion que imprime el precio total
 	int i=0;
-	float sumaPrecio=0;
-	float paga=0;
+	float sumaPrecio=0;//cantidad que comprara cliente 
+	float paga=0;//cantidad que pagara el cliente
 	for (i=0; i<elementosComprados; i++)
 	{
 		sumaPrecio+=(lugarLista->precio);
@@ -170,12 +170,12 @@ void precioTotal(productos *lugarLista, int elementosComprados){//Funcion que im
 	printf("Pague querido cliente\n");
 	fflush( stdin );
 	scanf("%f",&paga);
-	while (paga<sumaPrecio)
+	while (paga<sumaPrecio)//mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
 	{
 		printf("La compra supera esa cantidad, introduce la cantidad a pagar\n");
 		scanf("%f",&paga);	
 	}
-	printf("Le devolvemos %.2f, tengo un buen dia\n",paga-sumaPrecio);
+	printf("Le devolvemos %.2f, tengo un buen dia\n",paga-sumaPrecio);//muestra la cantidad a devolver
 }
 
 

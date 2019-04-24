@@ -39,6 +39,8 @@ int i;
 float precioParking;
 int numeroProducto;
 int elementosComprados=0;
+int segundos;
+int minutos;
 productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
@@ -152,16 +154,22 @@ while (fin!=0){
 		if (sn=='s'){
 			fint = time(NULL);
    			delta = fint - inicio;
+   			minutos=delta/60;
+   			segundos=delta-minutos*delta;
    			
 			if(delta>120){
-			printf("Ha usado el parking durante %d segundos\n", delta);
+			printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
 			precioParking=2+(delta-120)*0.005;
-			printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f",precioParking);
+			printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f\n",precioParking);
 			fin=0; entendido=0; park=0;
 			}
 		else{
-			printf("Ha usado el parking durante %d segundos\n", delta);
-			precioParking=0;
+			if(minutos==0){
+				printf("Ha usado el parking durante %d segundos\n", segundos);
+				}
+				else{
+				printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
+				}
 			printf("Al ser menos de dos minutos su uso es gratuito\n");
 			fin=0; entendido=0; park=0;
 			}

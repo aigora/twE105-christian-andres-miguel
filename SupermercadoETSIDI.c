@@ -170,7 +170,7 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 	int numeroProducto,cantidad;
 	int i=1;
 	printf("Escoja el producto que quiera:\t");
-	while (i==1)
+	while (i==1)//Al equivocarte al elegir numero del producto te lo vuelve a pedir
 	{
 		scanf("%i",&numeroProducto);//Te pide el numero del producto
 

@@ -87,21 +87,25 @@ while (fin!=0){
 	scanf(" %c",&lugar);
 	switch (lugar){
 		case 'd':
+		case 'D':
 			printf("Elija el articulo que desee de la seccion de panaderia\n");
 			printLista(lista_pan, 10);
 			anadir_a_lista(lista_pan, (lugarLista+elementosComprados), elementosComprados);
 			break;
 		case 'p':
+		case 'P':
 			printf("Elija el articulo que desee de la seccion de pescaderia\n");
 			printLista(lista_pescado, 10);
 			anadir_a_lista(lista_pescado, (lugarLista+elementosComprados), elementosComprados);
 			break;
 		case 'f':
+		case 'F':
 			printf("Elija el articulo que desee de la seccion de fruteria\n");
 			printLista(lista_fruta, 10);
 			anadir_a_lista(lista_fruta, (lugarLista+elementosComprados), elementosComprados);
 			break;
 		case 'c':
+		case 'C':
 			printf("Elija el articulo que desee de la seccion de carniceria\n");
 			printLista(lista_carne, 10);
 			anadir_a_lista(lista_carne, (lugarLista+elementosComprados), elementosComprados);

@@ -15,7 +15,7 @@ typedef struct{
 void printLista(productos nlista[1000], int nelementos);
 //Funcion para imprimir lista
 
-void precioTotal(productos nLista[1000], int nelementos);
+void precioTotal(productos nLista[1000], int nelementos,float parking);
 //Funcion que suma los precios de una lista
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);
 //Anade los elementos seleccionados a la lista final con sus respectivas cantidades
@@ -178,7 +178,7 @@ while (fin!=0){
 }//acaba bucle elegir cosas
 printLista(ListaCompra, elementosComprados);
 
-precioTotal(ListaCompra, elementosComprados);
+precioTotal(ListaCompra, elementosComprados, precioParking);
 }//while repetitivo
 }///acaba main
 
@@ -196,25 +196,26 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 		lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);
 	}
 }
-void precioTotal(productos *lugarLista, int elementosComprados){//Funcion que imprime el precio total
+void precioTotal(productos *lugarLista, int elementosComprados,float parking){//Funcion que imprime el precio total
 	int i=0;
-	float sumaPrecio=0;//cantidad que comprara cliente 
+	float sumaPrecioProductos=0;//cantidad que comprara cliente 
 	float paga=0;//cantidad que pagara el cliente
 	for (i=0; i<elementosComprados; i++)
 	{
-		sumaPrecio+=(lugarLista->precio);
+		sumaPrecioProductos+=(lugarLista->precio);
 		lugarLista++;
 	}
-	printf("Total a pagar: %.2f\n", sumaPrecio);
+	printf("Total a pagar: %.2f\n", sumaPrecioProductos+parking);
 	printf("Pague querido cliente\n");
 	fflush( stdin );
 	scanf("%f",&paga);
-	while (paga<sumaPrecio)//mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
+	while (paga<sumaPrecioProductos+parking)//mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
 	{
 		printf("La compra supera esa cantidad, introduce la cantidad a pagar\n");
 		scanf("%f",&paga);	
 	}
-	printf("Le devolvemos %.2f, tengo un buen dia\n",paga-sumaPrecio);//muestra la cantidad a devolver
+	printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos+parking));//muestra la cantidad a devolver
+	sleep(10);
 }
 
 

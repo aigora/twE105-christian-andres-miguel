@@ -144,7 +144,7 @@ while (fin!=0){
 	}//Pregunta si quieres mas cosas
 	while(park==1)
 		{
-			printf("Ha usado parquing?  (si o no)\n");
+			printf("Ha usado parking?  (si o no)\n");
 			fflush( stdin );
 			scanf(" %c", &sn );
 		if (sn=='s'){

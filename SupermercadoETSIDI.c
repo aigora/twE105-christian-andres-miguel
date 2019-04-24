@@ -27,7 +27,7 @@ while(1)
 system("cls");//Limpiar pantalla
 	time_t inicio;
     time_t fint;
-    time_t delta;
+    time_t delta;//Para indicar la diferencia de tiempo entre el inicio y el fin de la compra
 	
     inicio = time(NULL);//Comienza cronometro
 int fin=1;

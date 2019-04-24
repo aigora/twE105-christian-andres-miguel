@@ -140,6 +140,7 @@ while (fin!=0){
 printLista(ListaCompra, elementosComprados);
 
 precioTotal(ListaCompra, elementosComprados);
+sleep(10);
 }//while repetitivo
 }///acaba main
 

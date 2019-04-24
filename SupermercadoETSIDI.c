@@ -151,12 +151,14 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 		lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);
 	}
 }
-//ARREGLAR ESTO PORQUE NO SUMA EL PRECIO BIEN
 void precioTotal(productos *lugarLista, int elementosComprados){
 	int i=0;
-	float sumaPrecio;
+	float sumaPrecio=0;
 	for (i=0; i<elementosComprados; i++)
-	sumaPrecio=sumaPrecio+(lugarLista->precio);
+	{
+		sumaPrecio+=(lugarLista->precio);
+		lugarLista++;
+	}
 	printf("Total a pagar: %.2f\n", sumaPrecio);
 }
 
@@ -180,6 +182,6 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 	
 	printf("Escribe la cantidad necesitada\n");
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
-	lugarLista->cantidad+=cantidad;
+	lugarLista->cantidad=cantidad;
 	lugarLista->precio=cantidad*(lugarLista->precio);
 }

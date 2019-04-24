@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -29,7 +30,6 @@ int numeroProducto;
 int elementosComprados=0;
 productos ListaCompra[10];
 productos *lugarLista;
-
 lugarLista=ListaCompra;
 productos lista_pan[10]={
 	{1,"pan blanco", 0.5, 0},
@@ -175,14 +175,14 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 
 		if (numeroProducto>0 && numeroProducto<11){
 			*lugarLista=nLista[numeroProducto-1];//rellena el puntero lugarLista con los datos del producto seleccionado
-			lugarLista->numero=elementosComprados+1;
-			i=0;
+			lugarLista->numero=elementosComprados+1;//cambia el numero del producto por el del numero de productos que lleves comprados
+			i=0;//Para salir del while
 			}
 		else
 			printf("Numero incorrecto, escriba en numero entre el 1 y el 10\n");
 	}
 	printf("Escribe la cantidad necesitada\n");
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
-	lugarLista->cantidad=cantidad;
-	lugarLista->precio=cantidad*(lugarLista->precio);
+	lugarLista->cantidad=cantidad;//Escribe la cantidad en su lugar
+	lugarLista->precio=cantidad*(lugarLista->precio);//Multiplica la cantidad por el precio para mostrar el precio total
 }

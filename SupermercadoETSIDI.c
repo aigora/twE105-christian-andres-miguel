@@ -57,41 +57,41 @@ productos lista_pan[10]={
 	{10,"pan de semillas", 0.67,0}
 	};
 productos lista_pescado[10]={
-	{1,"dorada", 7.5},
-	{2,"lubina", 7.65},
-	{3,"atun rojo", 12.45},
-	{4,"pulpo", 10.75},
-	{5,"calamar", 11.99},
-	{6,"bacalao", 8.67},
-	{7,"sargo", 10.25},
-	{8,"almeja",9.95},
-	{9,"sardina", 7.05},
-	{10,"caballa", 5.67}
+	{1,"dorada", 7.5,0},
+	{2,"lubina", 7.65,0},
+	{3,"atun rojo", 12.45,0},
+	{4,"pulpo", 10.75,0},
+	{5,"calamar", 11.99,0},
+	{6,"bacalao", 8.67,0},
+	{7,"sargo", 10.25,0},
+	{8,"almeja",9.95,0},
+	{9,"sardina", 7.05,0},
+	{10,"caballa", 5.67,0}
 	};
 
 productos lista_fruta[10]={
-	{1,"naranjas", 1.15},
-	{2,"tomates", 2.65},
-	{3,"pera", 2.45},
-	{4,"manzana", 1.25},
-	{5,"platano", 1.49},
-	{6,"lechuga", 0.67},
-	{7,"papas", 1.35},
-	{8,"ajos", 1.95},
-	{9,"cebolla blanca", 1.55},
-	{10,"cebolla roja", 1.67}
+	{1,"naranjas", 1.15,0},
+	{2,"tomates", 2.65,0},
+	{3,"pera", 2.45,0},
+	{4,"manzana", 1.25,0},
+	{5,"platano", 1.49,0},
+	{6,"lechuga", 0.67,0},
+	{7,"papas", 1.35,0},
+	{8,"ajos", 1.95,0},
+	{9,"cebolla blanca", 1.55,0},
+	{10,"cebolla roja", 1.67,0}
 	};
 productos lista_carne[10]={
-	{1,"pechuga pollo", 4.16},
-	{2,"filete ternera", 5.65},
-	{3,"chuleta cerdo", 4.45},
-	{4,"panceta", 4.25},
-	{5,"chuleton vaca", 5.49},
-	{6,"chuleta pavo", 4.67},
-	{7,"bistec cerdo", 3.95},
-	{8,"jamon", 7.95},
-	{9,"pechuga pavo", 5.53},
-	{10,"muslo pollo", 3.67}
+	{1,"pechuga pollo", 4.16,0},
+	{2,"filete ternera", 5.65,0},
+	{3,"chuleta cerdo", 4.45,0},
+	{4,"panceta", 4.25,0},
+	{5,"chuleton vaca", 5.49,0},
+	{6,"chuleta pavo", 4.67,0},
+	{7,"bistec cerdo", 3.95,0},
+	{8,"jamon", 7.95,0},
+	{9,"pechuga pavo", 5.53,0},
+	{10,"muslo pollo", 3.67,0}
 	};
 	printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n");
 while (fin!=0){

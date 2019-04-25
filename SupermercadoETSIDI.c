@@ -153,7 +153,7 @@ while (fin!=0){
 			scanf(" %c", &sn );
 		if (sn=='s'){
 			fint = time(NULL);
-   			delta = fint - inicio;
+   			delta = fint - inicio;//delta sera la diferencia te tiempo entre que el usuario empieza a comprar hasta que termina
    			minutos=delta/60;
    			segundos=delta-minutos*delta;
    			

@@ -160,6 +160,7 @@ while (fin!=0){
 			if(delta>120){
 			printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
 			precioParking=2+(delta-120)*0.005;
+			sleep(2);
 			printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f\n",precioParking);
 			fin=0; entendido=0; park=0;
 			}
@@ -170,6 +171,7 @@ while (fin!=0){
 				else{
 				printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
 				}
+			sleep(2);
 			printf("Al ser menos de dos minutos su uso es gratuito\n");
 			fin=0; entendido=0; park=0;
 			}
@@ -185,7 +187,7 @@ while (fin!=0){
 		}
 }//Acaba bucle elegir cosas
 printLista(ListaCompra, elementosComprados);
-
+sleep(3);
 precioTotal(ListaCompra, elementosComprados, precioParking);
 }//while repetitivo
 }//Acaba main

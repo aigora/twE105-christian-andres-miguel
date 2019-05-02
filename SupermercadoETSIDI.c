@@ -46,7 +46,7 @@ productos *lugarLista;
 lugarLista=ListaCompra;
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
 FILE *pf,*pf2,*pf3,*pf4;//punteros para ficheros
-pf = fopen("c:/ejemplos/pescaderia.txt", "r");//---------------Hay que poner este fichero en otro sitio-------------
+pf = fopen("c:/ejemplos/pescaderia.txt", "r");//---------------Hay que poner este ficheros en otro sitio-------------
 pf2 = fopen("c:/ejemplos/panaderia.txt", "r");
 pf3 = fopen("c:/ejemplos/fruteria.txt", "r");
 pf4 = fopen("c:/ejemplos/carniceria.txt", "r");
@@ -57,14 +57,14 @@ if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL)
 }
 else
 {
-	for(j=0;j<10;j++)//-------------Deberiamos cambiar el 10 por un variable------------------
+	for(j=0;j<10;j++)//-------------Deberiamos cambiar el 10 por una variable------------------
 	{
 		fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[j].numero,&lista_pescado[j].nombre,&lista_pescado[j].precio,&lista_pescado[j].cantidad);//mete los productos de la pescaderia
 		fscanf(pf2,"%i;%[^;];%f;%i",&lista_pan[j].numero,&lista_pan[j].nombre,&lista_pan[j].precio,&lista_pan[j].cantidad);
 		fscanf(pf3,"%i;%[^;];%f;%i",&lista_fruta[j].numero,&lista_fruta[j].nombre,&lista_fruta[j].precio,&lista_fruta[j].cantidad);
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
-	fclose(pf);
+	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4);//Cierra los ficheros
 }
 	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
 while (fin!=0){

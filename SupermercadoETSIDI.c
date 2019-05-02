@@ -45,9 +45,10 @@ productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
-FILE *pf;//puntero para ficheros
+FILE *pf,*pf2;//puntero para ficheros
 pf = fopen("c:/ejemplos/pescaderia.txt", "r");//---------------Hay que poner este fichero en otro sitio-------------
-if (pf == NULL)
+pf2 = fopen("c:/ejemplos/panaderia.txt", "r");
+if (pf == NULL || pf2 == NULL)
 {
 	printf("Error al abrir el fichero.\n");
 	return -1;	
@@ -57,6 +58,7 @@ else
 	for(j=0;j<10;j++)
 	{
 		fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[j].numero,&lista_pescado[j].nombre,&lista_pescado[j].precio,&lista_pescado[j].cantidad);//mete los productos de la pescaderia
+		fscanf(pf2,"%i;%[^;];%f;%i",&lista_pan[j].numero,&lista_pan[j].nombre,&lista_pan[j].precio,&lista_pan[j].cantidad);
 	}
 	fclose(pf);
 }

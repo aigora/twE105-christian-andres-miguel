@@ -1,0 +1,13 @@
+1;pechuga pollo;4;0
+2;filete ternera;5;0
+3;chuleta cerdo;4;0
+4;panceta;4;0
+5;chuleton vaca;5;0
+6;chuleta pavo;4;0
+7;bistec cerdo;3;0
+8;jamon;8;0
+9;pechuga pavo;5;0
+10;muslo pollo;3;0
+
+
+

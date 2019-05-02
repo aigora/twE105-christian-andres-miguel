@@ -35,7 +35,7 @@ int entendido;
 int park;
 char lugar;
 char sn;//si o n
-int i;
+int i,j;
 float precioParking;
 int numeroProducto;
 int elementosComprados=0;
@@ -44,56 +44,23 @@ int minutos;
 productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
-productos lista_pan[10]={
-	{1,"pan blanco", 0.5, 0},
-	{2,"pan integral", 0.65, 0},
-	{3,"pan de molde", 1.45, 0},
-	{4,"palmerea de chocolate", 0.75, 0},
-	{5,"bizcochon", 5.99, 0},
-	{6,"kg de harina", 0.67, 0},
-	{7,"azucar", 1.25, 0},
-	{8,"sal",1.15,0},
-	{9,"napolitana", 1.05,0},
-	{10,"pan de semillas", 0.67,0}
-	};
-productos lista_pescado[10]={
-	{1,"dorada", 7.5,0},
-	{2,"lubina", 7.65,0},
-	{3,"atun rojo", 12.45,0},
-	{4,"pulpo", 10.75,0},
-	{5,"calamar", 11.99,0},
-	{6,"bacalao", 8.67,0},
-	{7,"sargo", 10.25,0},
-	{8,"almeja",9.95,0},
-	{9,"sardina", 7.05,0},
-	{10,"caballa", 5.67,0}
-	};
-
-productos lista_fruta[10]={
-	{1,"naranjas", 1.15,0},
-	{2,"tomates", 2.65,0},
-	{3,"pera", 2.45,0},
-	{4,"manzana", 1.25,0},
-	{5,"platano", 1.49,0},
-	{6,"lechuga", 0.67,0},
-	{7,"papas", 1.35,0},
-	{8,"ajos", 1.95,0},
-	{9,"cebolla blanca", 1.55,0},
-	{10,"cebolla roja", 1.67,0}
-	};
-productos lista_carne[10]={
-	{1,"pechuga pollo", 4.16,0},
-	{2,"filete ternera", 5.65,0},
-	{3,"chuleta cerdo", 4.45,0},
-	{4,"panceta", 4.25,0},
-	{5,"chuleton vaca", 5.49,0},
-	{6,"chuleta pavo", 4.67,0},
-	{7,"bistec cerdo", 3.95,0},
-	{8,"jamon", 7.95,0},
-	{9,"pechuga pavo", 5.53,0},
-	{10,"muslo pollo", 3.67,0}
-	};
-	printf("Bienvenido a nuestro supermecado, tenemos varias seccion donde usted podra comprarlo que quiera.\n");
+productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
+FILE *pf;//puntero para ficheros
+pf = fopen("c:/ejemplos/pescaderia.txt", "r");//---------------Hay que poner este fichero en otro sitio-------------
+if (pf == NULL)
+{
+	printf("Error al abrir el fichero.\n");
+	return -1;	
+}
+else
+{
+	for(j=0;j<10;j++)
+	{
+		fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[j].numero,&lista_pescado[j].nombre,&lista_pescado[j].precio,&lista_pescado[j].cantidad);//mete los productos de la pescaderia
+	}
+	fclose(pf);
+}
+	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
 while (fin!=0){
 	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
 	fflush( stdin );

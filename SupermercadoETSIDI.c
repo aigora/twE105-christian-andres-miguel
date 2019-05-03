@@ -108,11 +108,11 @@ while (fin!=0){
 	printf("Ha terminado su compra?  (si o no)\n");
 	fflush( stdin );
 	scanf(" %c", &sn );
-		if (sn=='s'){
+		if (sn=='s' || sn=='S'){
 			fin=0; entendido=0;park=1;//Muestra la cantidad a pagar
 			lugarLista++;
 		}
-		else if(sn=='n'){
+		else if(sn=='n' || sn=='N'){
 				fin=1; entendido=0;park=0;//Vuelve a preguntar la seccion
 			}
 		else{
@@ -124,7 +124,7 @@ while (fin!=0){
 			printf("Ha usado parking?  (si o no)\n");
 			fflush( stdin );
 			scanf(" %c", &sn );
-		if (sn=='s'){
+		if (sn=='s' || sn=='S'){
 			fint = time(NULL);
    			delta = fint - inicio;//delta sera la diferencia te tiempo entre que el usuario empieza a comprar hasta que termina
    			minutos=delta/60;
@@ -149,7 +149,7 @@ while (fin!=0){
 			fin=0; entendido=0; park=0;
 			}
 		}
-		else if(sn=='n'){
+		else if(sn=='n' || sn=='N'){
 			fint = time(NULL);
     		delta = fint - inicio;
 			fin=0; entendido=0; park=0;
@@ -223,6 +223,11 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 	}
 	printf("Escribe la cantidad necesitada\n");
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
+	while(cantidad<1)//Evitar cantidades negativas y cantidad 0
+		{
+				printf("Escribe la cantidad necesitada\n");
+				scanf("%i",&cantidad);//Te pide la cantidad del producto
+		}
 	lugarLista->cantidad=cantidad;//Escribe la cantidad en su lugar
 	lugarLista->precio=cantidad*(lugarLista->precio);//Multiplica la cantidad por el precio para mostrar el precio total
 }

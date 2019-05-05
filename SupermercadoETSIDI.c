@@ -46,7 +46,7 @@ productos *lugarLista;
 lugarLista=ListaCompra;
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
 FILE *pf,*pf2,*pf3,*pf4;//punteros para ficheros
-pf = fopen("pescaderia.txt", "r");//---------------Hay que poner este ficheros en otro sitio-------------
+pf = fopen("pescaderia.txt", "r");
 pf2 = fopen("panaderia.txt", "r");
 pf3 = fopen("fruteria.txt", "r");
 pf4 = fopen("carniceria.txt", "r");
@@ -159,9 +159,9 @@ while (fin!=0){
 			}
 		}
 }//Acaba bucle elegir cosas
-printLista(ListaCompra, elementosComprados);
+printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 sleep(3);
-precioTotal(ListaCompra, elementosComprados, precioParking);
+precioTotal(ListaCompra, elementosComprados, precioParking);//Indica la cantidad a pagar
 }//while repetitivo
 }//Acaba main
 

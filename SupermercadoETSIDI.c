@@ -46,10 +46,10 @@ productos *lugarLista;
 lugarLista=ListaCompra;
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
 FILE *pf,*pf2,*pf3,*pf4;//punteros para ficheros
-pf = fopen("c:/ejemplos/pescaderia.txt", "r");//---------------Hay que poner este ficheros en otro sitio-------------
-pf2 = fopen("c:/ejemplos/panaderia.txt", "r");
-pf3 = fopen("c:/ejemplos/fruteria.txt", "r");
-pf4 = fopen("c:/ejemplos/carniceria.txt", "r");
+pf = fopen("pescaderia.txt", "r");//---------------Hay que poner este ficheros en otro sitio-------------
+pf2 = fopen("panaderia.txt", "r");
+pf3 = fopen("fruteria.txt", "r");
+pf4 = fopen("carniceria.txt", "r");
 if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL)
 {
 	printf("Error al abrir el fichero.\n");
@@ -173,7 +173,7 @@ precioTotal(ListaCompra, elementosComprados, precioParking);
 //funciones
 void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 	int i=0;
-	printf("Numero\t Nombre\t Precio\t Cantidad\n");
+	printf("Numero\t\t Nombre\t\t\t Precio\t Cantidad\n");
 	for (i=0; i<n; i++){
 		printf("%d\t %s\t %.2f\t %i\n",
 		lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);

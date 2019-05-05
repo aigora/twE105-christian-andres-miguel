@@ -1,11 +1,10 @@
-1;dorada;7;0
-2;lubina;7;0
-3;atun rojo;12;0
-4;pulpo;10;0
-5;calamar;11;0
-6;bacalao;8;0
-7;sargo;10;0
-8;almeja;9;0
-9;sardina;7;0
-10;caballa;5;0
-
+1;dorada			;7.5;0
+2;lubina			;7.65;0
+3;atun rojo		;12.45;0
+4;pulpo			;10.75;0
+5;calamar		;11.99;0
+6;bacalao		;8.67;0
+7;sargo			;10.25;0
+8;almeja			;9.95;0
+9;sardina		;7.05;0
+10;caballa		;5.67;0

@@ -1,10 +1,10 @@
-1;naranjas;1;0
-2;tomates;2;0
-3;pera;2;0
-4;manzana;1;0
-5;platano;2;0
-6;lechuga;1;0
-7;papas;2;0
-8;ajos;2;0
-9;cebolla blanca;2;0
-10;cebolla roja;2;0
+1;naranjas		;1.15;0
+2;tomates		;2.65;0
+3;pera			;2.45;0
+4;manzana		;1.25;0
+5;platano		;1.49;0
+6;lechuga		;0.67;0
+7;papas			;1.35;0
+8;ajos			;1.95;0
+9;cebolla blanca		;1.55;0
+10;cebolla roja		;1.67;0

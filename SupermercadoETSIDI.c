@@ -268,7 +268,8 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
 	while(cantidad<1)//Evitar cantidades negativas y cantidad 0        -----------PREGUNTAR SI SE PUEDE HACER PARA QUE NO SE PILLE PROGRAMA AL PONER UNA LETRA--------------
 		{
-				printf("Escribe la cantidad necesitada\n");
+				printf("cantidad invalida escriba una nueva\n");
+				fflush( stdin );
 				scanf("%i",&cantidad);//Te pide la cantidad del producto
 		}
 	lugarLista->cantidad=cantidad;//Escribe la cantidad en su lugar

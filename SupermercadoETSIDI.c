@@ -38,7 +38,7 @@ system("cls");//Limpiar pantalla
 int fin=1;
 int registrado=0;
 int usuarionuevo=0;
-int aplicadescuento;
+int aplicadescuento=0;
 int entendido;
 int park;
 char lugar;

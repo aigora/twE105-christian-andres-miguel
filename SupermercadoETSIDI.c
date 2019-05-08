@@ -262,6 +262,7 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 			}
 		else
 			printf("Numero incorrecto, escriba en numero entre el 1 y el 10\n");
+			fflush( stdin );
 	}
 	printf("Escribe la cantidad necesitada\n");
 	scanf("%i",&cantidad);//Te pide la cantidad del producto

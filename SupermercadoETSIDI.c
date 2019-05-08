@@ -11,10 +11,10 @@ typedef struct{
 	int cantidad;
 }productos;
 
-//typedef struct{
-//	char usuario[40];
-//	int contrasena;
-//}usuariocontrasena;
+typedef struct{
+	char usuario[40];
+	int contrasena;
+}usuariocontrasena;
 
 
 void printLista(productos nlista[1000], int nelementos);
@@ -36,7 +36,8 @@ system("cls");//Limpiar pantalla
 	
     inicio = time(NULL);//Comienza cronometro
 int fin=1;
-//int registrado=0;
+int registrado=0;
+int usuarionuevo=0;
 int aplicadescuento;
 int entendido;
 int park;
@@ -48,7 +49,7 @@ int numeroProducto;
 int elementosComprados=0;
 int segundos;
 int minutos;
-//usuariocontrasena usuarios,registro[100];
+usuariocontrasena usuarios,registro[100];
 productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
@@ -58,13 +59,11 @@ pf = fopen("pescaderia.txt", "r");
 pf2 = fopen("panaderia.txt", "r");
 pf3 = fopen("fruteria.txt", "r");
 pf4 = fopen("carniceria.txt", "r");
-if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL)
-{
+if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL){
 	printf("Error al abrir el fichero.\n");
 	return -1;	
 }
-else
-{
+else{
 	for(j=0;j<10;j++)//-------------Deberiamos cambiar el 10 por una variable------------------
 	{
 		fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[j].numero,&lista_pescado[j].nombre,&lista_pescado[j].precio,&lista_pescado[j].cantidad);//mete los productos de la pescaderia
@@ -144,7 +143,7 @@ while (fin!=0){
 			sleep(2);
 			printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f\n",precioParking);
 			fin=0; entendido=0; park=0;
-			}
+		}
 		else{
 			if(minutos==0){
 				printf("Ha usado el parking durante %d segundos\n", segundos);
@@ -161,27 +160,57 @@ while (fin!=0){
 			fint = time(NULL);
     		delta = fint - inicio;
 			fin=0; entendido=0; park=0;
-			}
+		}
 		else{
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
-			}
 		}
-//	while(registrado==0)
-//	{
-//		printf("Tienes tarjeta de descuento?  (si o no)\n");
-//		fflush( stdin );
-//		scanf(" %c", &sn );
-//		int k;
-//		if (sn=='s' || sn=='S'){
-//			printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito;5656)");
-//			scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
-//			for (k=0;k<=100;k++){
-//				if (registro[k].usuario==usuarios.usuario && registro[k].contrasena==usuarios.contrasena)
-//					aplicadescuento=1;
-//			}
-//		}
-//		else if(sn=='n' || sn=='N')
-//	}
+	}
+	while(registrado==0){
+		printf("Tienes tarjeta de descuento?  (si o no)\n");
+		fflush( stdin );
+		scanf(" %c", &sn );
+		int k;
+		switch (sn){
+			case 's':
+			case 'S':
+				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito;5656)");
+				scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+				for (k=0;k<=100;k++){
+					if (registro[k].usuario==usuarios.usuario && registro[k].contrasena==usuarios.contrasena){
+						aplicadescuento=1;
+						registrado=1;
+					}
+					else{
+						registrado=1;
+					}
+				}
+				break;
+			case 'n':
+			case 'N':
+				printf("Quieres una tarjeta de descuento?\n");
+				fflush( stdin );
+				scanf(" %c", &sn );
+				if(sn=='s' || sn=='S'){
+					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo;56565)");
+					scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+						while (usuarionuevo==0){
+							for (k=0;k<=100;k++){
+								if (registro[k].usuario==usuarios.usuario){
+									usuarionuevo=1;
+								}
+							}
+						}
+					registrado=1;
+				}
+				else if(sn=='n' || sn=='N'){
+					registrado=1;
+				}
+				break;
+			default:
+			printf("No le hemos entendido\n");
+			break;
+		}
+	}//Acaba while registro
 }//Acaba bucle elegir cosas
 printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 sleep(3);

@@ -179,9 +179,11 @@ while (fin!=0){
 					if (registro[k].usuario==usuarios.usuario && registro[k].contrasena==usuarios.contrasena){
 						aplicadescuento=1;
 						registrado=1;
+						printf("Usuario Correcto\n");
 					}
 					else{
 						registrado=1;
+						printf("Error al introducir Usuario y contrasena\n");
 					}
 				}
 				break;
@@ -191,16 +193,23 @@ while (fin!=0){
 				fflush( stdin );
 				scanf(" %c", &sn );
 				if(sn=='s' || sn=='S'){
-					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo;56565)");
+					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo;56565)\n");
 					scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
 						while (usuarionuevo==0){
 							for (k=0;k<=100;k++){
 								if (registro[k].usuario==usuarios.usuario){
 									usuarionuevo=1;
 								}
+								else{
+									printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto;536565)\n");
+									scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+								}
+								
 							}
 						}
 					registrado=1;
+					aplicadescuento=1;
+					printf("Usuario nuevo creado\n");
 				}
 				else if(sn=='n' || sn=='N'){
 					registrado=1;

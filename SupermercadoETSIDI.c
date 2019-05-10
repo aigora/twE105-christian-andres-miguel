@@ -212,15 +212,16 @@ while (fin!=0){
 				fflush( stdin );
 				scanf(" %c", &sn );
 				if(sn=='s' || sn=='S'){
-					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo;56565)\n");
+					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo 56565)\n");
 					scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
 						while (usuarionuevo==0){
 							for (k=0;k<=100;k++){
-								if (registro[k].usuario==usuarios.usuario){
+								comparar=strcmp(usuarios.usuario, registro[k].usuario);
+								if (comparar!=0){
 									usuarionuevo=1;
 								}
 								else{
-									printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto;536565)\n");
+									printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto 536565)\n");
 									scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
 								}
 								

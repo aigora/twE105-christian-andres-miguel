@@ -54,12 +54,14 @@ productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
-FILE *pf,*pf2,*pf3,*pf4;//punteros para ficheros
+FILE *pf,*pf2,*pf3,*pf4,*pregistro;//punteros para ficheros
 pf = fopen("pescaderia.txt", "r");
 pf2 = fopen("panaderia.txt", "r");
 pf3 = fopen("fruteria.txt", "r");
 pf4 = fopen("carniceria.txt", "r");
-if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL){
+pregistro = fopen("usuarios.txt", "r");
+
+if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL || pregistro == NULL){
 	printf("Error al abrir el fichero.\n");
 	return -1;	
 }
@@ -71,8 +73,15 @@ else{
 		fscanf(pf3,"%i;%[^;];%f;%i",&lista_fruta[j].numero,&lista_fruta[j].nombre,&lista_fruta[j].precio,&lista_fruta[j].cantidad);
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
-	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4);//Cierra los ficheros
+	i=0;
+	while(fscanf(pregistro,"%[^;];%i)",&registro[i].usuario,&registro[i].contrasena) != EOF)
+	{
+		i++;
+	}
+	
+	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
+ 
 	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
 while (fin!=0){
 	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");

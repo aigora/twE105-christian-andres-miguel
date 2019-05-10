@@ -44,6 +44,8 @@ int comparar;
 char lugar;
 char sn;//si o no
 int i,j;
+int nLineas;
+char x;
 float precioParking;
 int numeroProducto;
 int elementosComprados=0;
@@ -78,8 +80,14 @@ else
 	while(fscanf(pregistro,"%[^;];%i)",&registro[i].usuario,&registro[i].contrasena) != EOF)
 	{
 		i++;
+
 	}
-	
+	while (fscanf(pregistro, " %c", &x) != EOF){
+//Si lo leído es un salto de línea
+	if (x == '\n')
+//incrementamos el contador
+	++nLineas;
+	}
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
 	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");

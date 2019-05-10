@@ -58,8 +58,7 @@ pf = fopen("pescaderia.txt", "r");
 pf2 = fopen("panaderia.txt", "r");
 pf3 = fopen("fruteria.txt", "r");
 pf4 = fopen("carniceria.txt", "r");
-if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL)
-{
+if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL){
 	printf("Error al abrir el fichero.\n");
 	return -1;	
 }

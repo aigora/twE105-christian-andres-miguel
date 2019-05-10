@@ -11,10 +11,10 @@ typedef struct{
 	int cantidad;
 }productos;
 
-//typedef struct{
-//	char usuario[40];
-//	int contrasena;
-//}usuariocontrasena;
+typedef struct{
+	char usuario[40];
+	int contrasena;
+}usuariocontrasena;
 
 
 void printLista(productos nlista[1000], int nelementos);
@@ -25,8 +25,7 @@ void precioTotal(productos nLista[1000], int nelementos,float parking,int descue
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados);
 //Anade los elementos seleccionados a la lista final con sus respectivas cantidades
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv){
 while(1)
 {
 system("cls");//Limpiar pantalla
@@ -36,10 +35,12 @@ system("cls");//Limpiar pantalla
 	
     inicio = time(NULL);//Comienza cronometro
 int fin=1;
-//int registrado=0;
-int aplicadescuento;
+int registrado=0;
+int usuarionuevo=0;
+int aplicadescuento=0;
 int entendido;
 int park;
+int comparar;
 char lugar;
 char sn;//si o no
 int i,j;
@@ -48,17 +49,19 @@ int numeroProducto;
 int elementosComprados=0;
 int segundos;
 int minutos;
-//usuariocontrasena usuarios,registro[100];
+usuariocontrasena usuarios,registro[100];
 productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
-FILE *pf,*pf2,*pf3,*pf4;//punteros para ficheros
+FILE *pf,*pf2,*pf3,*pf4,*pregistro;//punteros para ficheros
 pf = fopen("pescaderia.txt", "r");
 pf2 = fopen("panaderia.txt", "r");
 pf3 = fopen("fruteria.txt", "r");
 pf4 = fopen("carniceria.txt", "r");
-if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL){
+pregistro = fopen("usuarios.txt", "r");
+
+if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL || pregistro == NULL){
 	printf("Error al abrir el fichero.\n");
 	return -1;	
 }
@@ -71,7 +74,13 @@ else
 		fscanf(pf3,"%i;%[^;];%f;%i",&lista_fruta[j].numero,&lista_fruta[j].nombre,&lista_fruta[j].precio,&lista_fruta[j].cantidad);
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
-	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4);//Cierra los ficheros
+	i=0;
+	while(fscanf(pregistro,"%[^;];%i)",&registro[i].usuario,&registro[i].contrasena) != EOF)
+	{
+		i++;
+	}
+	
+	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
 	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
 while (fin!=0){
@@ -165,24 +174,65 @@ while (fin!=0){
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
 			}
 		}
-//	while(registrado==0)
-//	{
-//		printf("Tienes tarjeta de descuento?  (si o no)\n");
-//		fflush( stdin );
-//		scanf(" %c", &sn );
-//		int k;
-//		if (sn=='s' || sn=='S'){
-//			printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito;5656)");
-//			scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
-//			for (k=0;k<=100;k++){
-//				if (registro[k].usuario==usuarios.usuario && registro[k].contrasena==usuarios.contrasena)
-//					aplicadescuento=1;
-//			}
-//		}
-//		else if(sn=='n' || sn=='N')
-//	}
-}//Acaba bucle elegir cosas
+	}
+	while(registrado==0){
+		printf("Tienes tarjeta de descuento?  (si o no)\n");
+		fflush( stdin );
+		scanf(" %c", &sn );
+		int k;
+		switch (sn){
+			case 's':
+			case 'S':
+				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito;5656)\n");
+				scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+				for (k=0;k<100;k++){
+					comparar=strcmp(usuarios.usuario, registro[k].usuario);
+					if (comparar==0 && registro[k].contrasena==usuarios.contrasena){
+						aplicadescuento=1;
+						registrado=1;
+						printf("Usuario Correcto\n");
+					}
+					else{
+						registrado=1;
+					}
+				}
+				printf("Error al introducir Usuario y contrasena\n");
+				break;
+			case 'n':
+			case 'N':
+				printf("Quieres una tarjeta de descuento?\n");
+				fflush( stdin );
+				scanf(" %c", &sn );
+				if(sn=='s' || sn=='S'){
+					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo;56565)\n");
+					scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+						while (usuarionuevo==0){
+							for (k=0;k<=100;k++){
+								if (registro[k].usuario==usuarios.usuario){
+									usuarionuevo=1;
+								}
+								else{
+									printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto;536565)\n");
+									scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+								}
+								
+							}
+						}
+					registrado=1;
+					aplicadescuento=1;
+					printf("Usuario nuevo creado\n");
+				}
+				else if(sn=='n' || sn=='N'){
+					registrado=1;
+				}
+				break;
+			default:
+			printf("No le hemos entendido\n");
+			break;
+		}
+	}//Acaba while registro
 printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
+//printf("%s %i",registro[0].usuario,registro[0].contrasena); 
 sleep(3);
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
 }//while repetitivo
@@ -239,7 +289,7 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking, in
 		}
 		printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos*descuento095+parking));//Muestra la cantidad a devolver
 	}
-	sleep(10);
+	sleep(3);
 }
 
 

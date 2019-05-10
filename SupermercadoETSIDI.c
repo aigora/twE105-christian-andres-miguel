@@ -191,8 +191,8 @@ while (fin!=0){
 		switch (sn){
 			case 's':
 			case 'S':
-				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito;5656)\n");
-				scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito 5656)\n");
+				scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 				for (k=0;k<100;k++){
 					comparar=strcmp(usuarios.usuario, registro[k].usuario);
 					if (comparar==0 && registro[k].contrasena==usuarios.contrasena){
@@ -213,7 +213,7 @@ while (fin!=0){
 				scanf(" %c", &sn );
 				if(sn=='s' || sn=='S'){
 					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo;56565)\n");
-					scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+					scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
 						while (usuarionuevo==0){
 							for (k=0;k<=100;k++){
 								if (registro[k].usuario==usuarios.usuario){

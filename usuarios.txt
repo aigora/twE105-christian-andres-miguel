@@ -1,6 +1,2 @@
-pepe;12;0
-jose;34;0
-cabellos;66;0.000000
-cabellooos;33;0.000000
-cabeee;11;0.000000
-caabe;33;48
+cabe;6;0
+cabee;6;0

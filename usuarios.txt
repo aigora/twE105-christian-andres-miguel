@@ -1,2 +1,3 @@
 cabe;6;0
 oscar;123;1
+lalo;34;0

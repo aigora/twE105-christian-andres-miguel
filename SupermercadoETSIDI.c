@@ -14,8 +14,10 @@ typedef struct{
 typedef struct{
 	char usuario[40];
 	int contrasena;
+	float puntos;
 }usuariocontrasena;
 
+void anadirPuntos(usuariocontrasena *usuario,float precio);
 
 void printLista(productos nlista[1000], int nelementos);
 //Funcion para imprimir lista
@@ -340,4 +342,13 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 		}
 	lugarLista->cantidad=cantidad;//Escribe la cantidad en su lugar
 	lugarLista->precio=cantidad*(lugarLista->precio);//Multiplica la cantidad por el precio para mostrar el precio total
+}
+
+void puntos(usuariocontrasena *usuario,float precio){
+	float puntos=0;
+	if(precio>=50){
+		usuario->puntos+=precio/15;
+	}
+	else
+		usuario->puntos+=precio/20;
 }

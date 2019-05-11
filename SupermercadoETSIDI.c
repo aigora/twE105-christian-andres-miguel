@@ -236,7 +236,7 @@ while (fin!=0){
 					comparado=0;
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
 							for (k=0;k<nLineas;k++){
-								comparar=strcmp(usuarios.usuario, registro[k].usuario);	
+								comparar=strcmp(usuarios.usuario,registro[k].usuario);
 								if (comparar==0)
 								comparado++;
 							}
@@ -244,9 +244,9 @@ while (fin!=0){
 								usuarionuevo=1;
 							}
 							else{
-								printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto 536565)\n");
+								printf("El usuario %s ya existe, escribe otro usuario y contrasena\n",usuarios.usuario);
 								scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
-								comparar=0;
+								comparado=0;
 							}
 						}
 						pregistro = fopen("usuarios.txt", "a");

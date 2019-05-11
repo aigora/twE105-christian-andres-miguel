@@ -48,7 +48,8 @@ char sn;//si o no
 int i,j;
 int nLineas;
 char x;
-float precioParking;
+float precioParking=0;
+float sumaPrecioProductos=0;
 int numeroProducto;
 int elementosComprados=0;
 int segundos;
@@ -79,7 +80,7 @@ else
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
 	i=0;
-	while(fscanf(pregistro,"%[^;];%i)",&registro[i].usuario,&registro[i].contrasena) != EOF)
+	while(fscanf(pregistro,"%[^;];%i;%f)",&registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)
 	{
 		i++;
 
@@ -249,9 +250,15 @@ while (fin!=0){
 			printf("No le hemos entendido\n");
 			break;
 		}
+//		for (i=0; i<elementosComprados; i++)
+//		{
+//		sumaPrecioProductos+=(lugarLista->precio);
+//		lugarLista++;
+//		}
+//		anadirPuntos(&usuarios,sumaPrecioProductos);
 	}//Acaba while registro
 printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
-//printf("%s %i",registro[0].usuario,registro[0].contrasena); 
+//printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
 sleep(3);
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
 }//while repetitivo

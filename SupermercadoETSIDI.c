@@ -237,8 +237,11 @@ while (fin!=0){
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
 							for (k=0;k<nLineas;k++){
 								comparar=strcmp(usuarios.usuario,registro[k].usuario);
-								if (comparar==0)
-								comparado++;
+							//	printf("%s\t",registro[k].usuario);
+							//	printf("%s\t",usuarios.usuario);
+								if (comparar==0){   // Mirar porque solo funciona con el primer usuario
+									comparado++;
+								}
 							}
 							if (comparado==0){
 								usuarionuevo=1;

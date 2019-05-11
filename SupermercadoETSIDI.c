@@ -14,10 +14,10 @@ typedef struct{
 typedef struct{
 	char usuario[40];
 	int contrasena;
-	float puntos;
+	int puntos;
 }usuariocontrasena;
 
-void anadirPuntos(usuariocontrasena *usuario,float precio);
+int puntos(productos nLista[1000], int nelementos);
 
 void printLista(productos nlista[1000], int nelementos);
 //Funcion para imprimir lista
@@ -54,7 +54,8 @@ int numeroProducto;
 int elementosComprados=0;
 int segundos;
 int minutos;
-usuariocontrasena usuarios,registro[100];
+usuariocontrasena usuarios;
+usuariocontrasena registro[100];
 productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
@@ -80,7 +81,7 @@ else
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
 	i=0;
-	while(fscanf(pregistro,"%[^;];%i;%f)",&registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)
+	while(fscanf(pregistro,"%[^;];%i;%i)",&registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)
 	{
 		i++;
 
@@ -217,7 +218,7 @@ while (fin!=0){
 				if(sn=='s' || sn=='S'){
 					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo 56565)\n");
 					scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
-						while (usuarionuevo==0){
+						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
 							for (k=0;k<=100;k++){
 								comparar=strcmp(usuarios.usuario, registro[k].usuario);
 								if (comparar!=0){
@@ -236,10 +237,12 @@ while (fin!=0){
 						return -1;	
 						}
 						else{
-						fprintf(pregistro,"\n%s;%i",usuarios.usuario,usuarios.contrasena);
+						usuarios.puntos=puntos(ListaCompra,elementosComprados);
+						fprintf(pregistro,"\n%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
 						registrado=1;
 						aplicadescuento=1;
 						printf("Usuario nuevo creado\n");
+						printf("%i\n",usuarios.puntos);
 						}
 				}
 				else if(sn=='n' || sn=='N'){
@@ -250,12 +253,6 @@ while (fin!=0){
 			printf("No le hemos entendido\n");
 			break;
 		}
-//		for (i=0; i<elementosComprados; i++)
-//		{
-//		sumaPrecioProductos+=(lugarLista->precio);
-//		lugarLista++;
-//		}
-//		anadirPuntos(&usuarios,sumaPrecioProductos);
 	}//Acaba while registro
 printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
@@ -351,11 +348,17 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 	lugarLista->precio=cantidad*(lugarLista->precio);//Multiplica la cantidad por el precio para mostrar el precio total
 }
 
-void puntos(usuariocontrasena *usuario,float precio){
-	float puntos=0;
-	if(precio>=50){
-		usuario->puntos+=precio/15;
+int puntos(productos *lugarLista, int elementosComprados){
+	int i=0;
+	float sumaPrecioProductos=0;//Cantidad que comprara cliente 
+	for (i=0; i<elementosComprados; i++)
+	{
+		sumaPrecioProductos+=(lugarLista->precio);
+		lugarLista++;
 	}
-	else
-		usuario->puntos+=precio/20;
+	printf("%f\n",sumaPrecioProductos);
+	if (sumaPrecioProductos>50)
+		return sumaPrecioProductos/5;
+	else 
+		return sumaPrecioProductos/10;
 }

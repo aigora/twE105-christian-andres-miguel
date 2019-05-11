@@ -222,19 +222,27 @@ while (fin!=0){
 								}
 								else{
 									printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto 536565)\n");
-									scanf("%[^;];%i",&usuarios.usuario,&usuarios.contrasena);
+									scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
 								}
 								
 							}
 						}
-					registrado=1;
-					aplicadescuento=1;
-					printf("Usuario nuevo creado\n");
+						pregistro = fopen("usuarios.txt", "a");
+						if (pf == NULL){
+							printf("Error al abrir el fichero.\n");
+						return -1;	
+						}
+						else{
+						fprintf(pregistro,"\n%s;%i",usuarios.usuario,usuarios.contrasena);
+						registrado=1;
+						aplicadescuento=1;
+						printf("Usuario nuevo creado\n");
+						}
 				}
 				else if(sn=='n' || sn=='N'){
 					registrado=1;
-				}
-				break;
+					}
+					break;
 			default:
 			printf("No le hemos entendido\n");
 			break;

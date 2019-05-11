@@ -1,5 +1,5 @@
-pepe;12
-jose;34
-pepe3;333
-pepito3;333
-cabellos;456
+pepe;12;0
+jose;34;0
+pepe3;333;0
+pepito3;333;0
+cabellos;456;0

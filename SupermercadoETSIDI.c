@@ -42,11 +42,10 @@ int usuarionuevo=0;
 int aplicadescuento=0;
 int entendido;
 int park;
-int comparar;
+int comparar,comparado;
 char lugar;
 char sn;//si o no
 int i,j;
-int nLineas;
 char x;
 float precioParking=0;
 float sumaPrecioProductos=0;
@@ -54,6 +53,7 @@ int numeroProducto;
 int elementosComprados=0;
 int segundos;
 int minutos;
+int nLineas;
 usuariocontrasena usuarios;
 usuariocontrasena registro[100];
 productos ListaCompra[10];
@@ -84,14 +84,9 @@ else
 	while(fscanf(pregistro,"%[^;];%i;%i)",&registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)
 	{
 		i++;
-
 	}
-	while (fscanf(pregistro, " %c", &x) != EOF){
-//Si lo leído es un salto de línea
-	if (x == '\n')
-//incrementamos el contador
-	++nLineas;
-	}
+	nLineas=i;
+//	printf("%i",nLineas);
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
 	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
@@ -196,57 +191,62 @@ while (fin!=0){
 			case 's':
 			case 'S':
 				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito 5656)\n");
-				scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
+				scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
+				comparar=0;
+				comparado=0;
 				for (k=0;k<nLineas;k++){
 					comparar=strcmp(usuarios.usuario, registro[k].usuario);
-					if (comparar==0 && registro[k].contrasena==usuarios.contrasena){
-						aplicadescuento=1;
-						registrado=1;
-						printf("Usuario Correcto\n");
-						printf("Obtienes %i puntos por tu compra\n",usuarios.puntos);
-						usuarios.puntos=puntos(ListaCompra,elementosComprados)+registro[k].puntos;
-						pregistro = fopen("usuarios.txt", "w");
-						if (pregistro == NULL){
-							printf("Error al abrir el fichero.\n");
-							return -1;	
-						}
-						else{
-							while(fscanf(pregistro,"%[^;];%i;%i)",&registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF){
-								i++;
-							}		
-							for(i=0;i<=nLineas;i++){
-								comparar=strcmp(usuarios.usuario, registro[i].usuario);
-								if(comparar==0)
-								fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
-								else 
-								fprintf(pregistro,"%s;%i;%i\n",registro[i].usuario,registro[i].contrasena,registro[i].puntos);
-							}
-						}
-						fclose(pregistro);
-						printf("%s %s %i %i",usuarios.usuario,registro[3].contrasena,usuarios.contrasena,registro[3].contrasena);	
-					}
+					if (comparar==0)
+					comparado++;
 				}
+				if (comparado==1 && registro[k].contrasena==usuarios.contrasena){
+					aplicadescuento=1;
+					registrado=1;
+					printf("Usuario Correcto\n");
+					printf("Obtienes %i puntos por tu compra\n",puntos(ListaCompra,elementosComprados));						
+					usuarios.puntos=puntos(ListaCompra,elementosComprados)+registro[k].puntos;
+					pregistro = fopen("usuarios.txt", "w");
+					if (pregistro == NULL){
+						printf("Error al abrir el fichero.\n");
+						return -1;	
+					}
+					else{
+						for(i=0;i<=100;i++){
+							comparar=strcmp(usuarios.usuario, registro[i].usuario);
+							if(comparar==0)
+							fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
+							else 
+							fprintf(pregistro,"%s;%i;%i\n",registro[i].usuario,registro[i].contrasena,registro[i].puntos);
+						}
+					}
+					fclose(pregistro);	
+				}
+				else
 				printf("Error al introducir Usuario y contrasena\n");
 				break;
 			case 'n':
 			case 'N':
-				printf("Quieres una tarjeta de descuento?\n");
+				printf("Quieres una tarjeta de descuento? (si o no)\n");
 				fflush( stdin );
 				scanf(" %c", &sn );
 				if(sn=='s' || sn=='S'){
 					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo 56565)\n");
 					scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
+					comparar=0;
+					comparado=0;
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
-							for (k=0;k<=100;k++){
-								comparar=strcmp(usuarios.usuario, registro[k].usuario);
-								if (comparar!=0){
-									usuarionuevo=1;
-								}
-								else{
-									printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto 536565)\n");
-									scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
-								}
-								
+							for (k=0;k<nLineas;k++){
+								comparar=strcmp(usuarios.usuario, registro[k].usuario);	
+								if (comparar==0)
+								comparado++;
+							}
+							if (comparado==0){
+								usuarionuevo=1;
+							}
+							else{
+								printf("Escribe un Usuario distinto y Contrasena (Ejemplo: pepitodistinto 536565)\n");
+								scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
+								comparar=0;
 							}
 						}
 						pregistro = fopen("usuarios.txt", "a");

@@ -379,7 +379,6 @@ int puntos(productos *lugarLista, int elementosComprados){
 		sumaPrecioProductos+=(lugarLista->precio);
 		lugarLista++;
 	}
-	printf("%f\n",sumaPrecioProductos);
 	if (sumaPrecioProductos>50)
 		return sumaPrecioProductos/5;
 	else 

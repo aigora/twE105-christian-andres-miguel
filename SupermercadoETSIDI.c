@@ -211,13 +211,13 @@ while (fin!=0){
 						return -1;	
 					}
 					else{
-						for(i=0;i<=100;i++){
+						for(i=0;i<=nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
 							comparar=strcmp(usuarios.usuario, registro[i].usuario);
 							if(comparar==0)
 							fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
 							else 
 							fprintf(pregistro,"%s;%i;%i\n",registro[i].usuario,registro[i].contrasena,registro[i].puntos);
-						}
+						} 
 					}
 					fclose(pregistro);	
 				}
@@ -239,7 +239,7 @@ while (fin!=0){
 								comparar=strcmp(usuarios.usuario,registro[k].usuario);
 							//	printf("%s\t",registro[k].usuario);
 							//	printf("%s\t",usuarios.usuario);
-								if (comparar==0){   // Mirar porque solo funciona con el primer usuario
+								if (comparar==0){   // -----------------Mirar porque solo funciona con el primer usuario-------------------
 									comparado++;
 								}
 							}
@@ -259,7 +259,7 @@ while (fin!=0){
 						}
 						else{
 						usuarios.puntos=puntos(ListaCompra,elementosComprados);
-						fprintf(pregistro,"\n%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
+						fprintf(pregistro,"\n%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
 						registrado=1;
 						aplicadescuento=1;
 						printf("Usuario nuevo creado\n");
@@ -363,7 +363,7 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 	scanf("%i",&cantidad);//Te pide la cantidad del producto
 	while(cantidad<1)//Evitar cantidades negativas y cantidad 0        -----------PREGUNTAR SI SE PUEDE HACER PARA QUE NO SE PILLE PROGRAMA AL PONER UNA LETRA--------------
 		{
-				printf("cantidad invalida escriba una nueva\n");
+				printf("Cantidad invalida escriba una nueva\n");
 				fflush( stdin );
 				scanf("%i",&cantidad);//Te pide la cantidad del producto
 		}

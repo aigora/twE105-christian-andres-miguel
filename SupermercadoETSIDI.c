@@ -239,7 +239,7 @@ while (fin!=0){
 						registrado=1;
 						aplicadescuento=1;
 						printf("Usuario nuevo creado\n");
-						printf("%i\n",usuarios.puntos);
+						printf("Obtienes %i puntos por tu compra\n",usuarios.puntos);
 						}
 				}
 				else if(sn=='n' || sn=='N'){

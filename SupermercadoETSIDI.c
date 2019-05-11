@@ -204,9 +204,6 @@ while (fin!=0){
 						registrado=1;
 						printf("Usuario Correcto\n");
 					}
-					else{
-						registrado=1;
-					}
 				}
 				printf("Error al introducir Usuario y contrasena\n");
 				break;
@@ -294,6 +291,7 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking, in
 		while (paga<sumaPrecioProductos+parking)//Mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
 		{
 			printf("La compra supera esa cantidad, introduce la cantidad a pagar\n");
+			fflush( stdin );
 			scanf("%f",&paga);	
 		}
 		printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos+parking));//Muestra la cantidad a devolver
@@ -308,6 +306,7 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking, in
 		while (paga<sumaPrecioProductos*descuento095+parking)//Mientres lo que pagua el cliente sea menor que lo que ha comprado, se vuelve a pedir el dinero
 		{
 			printf("La compra supera esa cantidad, introduce la cantidad a pagar\n");
+			fflush( stdin );
 			scanf("%f",&paga);	
 		}
 		printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos*descuento095+parking));//Muestra la cantidad a devolver

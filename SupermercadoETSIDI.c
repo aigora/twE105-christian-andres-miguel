@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
+#include <conio.h>
 typedef struct{
 	int numero;
 	char nombre[40];
@@ -81,8 +82,7 @@ else
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
 	i=0;
-	while(fscanf(pregistro,"%[^;];%i;%i)",&registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)
-	{
+	while(fscanf(pregistro,"%[^;];%i;%i)",registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)	{
 		i++;
 	}
 	nLineas=i;
@@ -191,16 +191,17 @@ while (fin!=0){
 			case 's':
 			case 'S':
 				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito 5656)\n");
-				scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
-				comparar=0;
+				scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 				comparado=0;
 				for (k=0;k<nLineas;k++){
-					comparar=strcmp(usuarios.usuario, registro[k].usuario);
-					if (comparar==0){
+					printf("%s\n",registro[k].usuario);
+					printf("%s\n",usuarios.usuario);
+					if(strcmp(usuarios.usuario,registro[k].usuario)==0){
 					comparado++;
 					z=k;
 					}
 				}
+				printf("%i\n",comparado);
 				if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
 					aplicadescuento=1;
 					registrado=1;
@@ -214,8 +215,7 @@ while (fin!=0){
 					}
 					else{
 						for(i=0;i<=nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
-							comparar=strcmp(usuarios.usuario, registro[i].usuario);
-							if(comparar==0)
+							if(strcmp(usuarios.usuario, registro[k].usuario)==0)
 							fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
 							else 
 							fprintf(pregistro,"%s;%i;%i\n",registro[i].usuario,registro[i].contrasena,registro[i].puntos);
@@ -233,15 +233,13 @@ while (fin!=0){
 				scanf(" %c", &sn );
 				if(sn=='s' || sn=='S'){
 					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo 56565)\n");
-					scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
-					comparar=0;
+					scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 					comparado=0;
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
 							for (k=0;k<nLineas;k++){
-								comparar=strcmp(usuarios.usuario,registro[k].usuario);
-							//	printf("%s\t",registro[k].usuario);
-							//	printf("%s\t",usuarios.usuario);
-								if (comparar==0){   // -----------------Mirar porque solo funciona con el primer usuario-------------------
+								printf("%s\t",registro[k].usuario);
+								printf("%s\t",usuarios.usuario);
+								if(strcmp(usuarios.usuario,registro[k].usuario)==0){   // -----------------Mirar porque solo funciona con el primer usuario-------------------
 									comparado++;
 								}
 							}
@@ -250,7 +248,7 @@ while (fin!=0){
 							}
 							else{
 								printf("El usuario %s ya existe, escribe otro usuario y contrasena\n",usuarios.usuario);
-								scanf("%s %i",&usuarios.usuario,&usuarios.contrasena);
+								scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 								comparado=0;
 							}
 						}
@@ -261,7 +259,7 @@ while (fin!=0){
 						}
 						else{
 						usuarios.puntos=puntos(ListaCompra,elementosComprados);
-						fprintf(pregistro,"\n%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
+						fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
 						registrado=1;
 						aplicadescuento=1;
 						printf("Usuario nuevo creado\n");

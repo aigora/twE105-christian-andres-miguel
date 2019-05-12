@@ -196,9 +196,9 @@ while (fin!=0){
 				for (k=0;k<nLineas;k++){
 					printf("%s\n",registro[k].usuario);
 					printf("%s\n",usuarios.usuario);
-					if(strcmp(usuarios.usuario,registro[k].usuario)==0){
+					if(strcmp(usuarios.usuario,registro[k].usuario)==0){ //Compara ambos nombres de usuarios -----------Pero solo con el primero da 0----------------
 					comparado++;
-					z=k;
+					z=k; //Guarda la posicion en la cual esta el usuario
 					}
 				}
 				printf("%i\n",comparado);
@@ -207,7 +207,7 @@ while (fin!=0){
 					registrado=1;
 					printf("Usuario Correcto\n");
 					printf("Obtienes %i puntos por tu compra\n",puntos(ListaCompra,elementosComprados));						
-					usuarios.puntos=puntos(ListaCompra,elementosComprados)+registro[k].puntos;
+					usuarios.puntos=puntos(ListaCompra,elementosComprados)+registro[z].puntos;
 					paux = fopen("auxiliar.txt", "w");
 					if (paux == NULL){
 						printf("Error al abrir el fichero.\n");
@@ -268,12 +268,12 @@ while (fin!=0){
 						return -1;	
 						}
 						else{
-						usuarios.puntos=puntos(ListaCompra,elementosComprados);
-						fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
-						registrado=1;
-						aplicadescuento=1;
-						printf("Usuario nuevo creado\n");
-						printf("Obtienes %i puntos por tu compra\n",usuarios.puntos);
+							usuarios.puntos=puntos(ListaCompra,elementosComprados);
+							fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
+							registrado=1;
+							aplicadescuento=1;
+							printf("Usuario nuevo creado\n");
+							printf("Obtienes %i puntos por tu compra\n",usuarios.puntos);
 						}
 				}
 				else if(sn=='n' || sn=='N'){

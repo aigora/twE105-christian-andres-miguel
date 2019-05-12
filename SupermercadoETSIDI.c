@@ -186,7 +186,7 @@ while (fin!=0){
 		printf("Tienes tarjeta de descuento?  (si o no)\n");
 		fflush( stdin );
 		scanf(" %c", &sn );
-		int k;
+		int k,z=0;
 		switch (sn){
 			case 's':
 			case 'S':
@@ -196,10 +196,12 @@ while (fin!=0){
 				comparado=0;
 				for (k=0;k<nLineas;k++){
 					comparar=strcmp(usuarios.usuario, registro[k].usuario);
-					if (comparar==0)
+					if (comparar==0){
 					comparado++;
+					z=k;
+					}
 				}
-				if (comparado==1 && registro[k].contrasena==usuarios.contrasena){
+				if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
 					aplicadescuento=1;
 					registrado=1;
 					printf("Usuario Correcto\n");

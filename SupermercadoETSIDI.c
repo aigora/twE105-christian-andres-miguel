@@ -61,7 +61,7 @@ productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
-FILE *pf,*pf2,*pf3,*pf4,*pregistro;//punteros para ficheros
+FILE *pf,*pf2,*pf3,*pf4,*pregistro,*paux;//punteros para ficheros
 pf = fopen("pescaderia.txt", "r");
 pf2 = fopen("panaderia.txt", "r");
 pf3 = fopen("fruteria.txt", "r");
@@ -208,20 +208,30 @@ while (fin!=0){
 					printf("Usuario Correcto\n");
 					printf("Obtienes %i puntos por tu compra\n",puntos(ListaCompra,elementosComprados));						
 					usuarios.puntos=puntos(ListaCompra,elementosComprados)+registro[k].puntos;
-					pregistro = fopen("usuarios.txt", "w");
-					if (pregistro == NULL){
+					paux = fopen("auxiliar.txt", "w");
+					if (paux == NULL){
 						printf("Error al abrir el fichero.\n");
 						return -1;	
 					}
 					else{
-						for(i=0;i<=nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
-							if(strcmp(usuarios.usuario, registro[k].usuario)==0)
-							fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
+						for(i=0;i<nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
+							fprintf(paux,"%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
 							else 
-							fprintf(pregistro,"%s;%i;%i\n",registro[i].usuario,registro[i].contrasena,registro[i].puntos);
+							fprintf(paux,"%s;%i;%i",registro[i].usuario,registro[i].contrasena,registro[i].puntos);
 						} 
 					}
-					fclose(pregistro);	
+					fclose(paux);
+					if(remove("usuarios.txt")==0)	//Borramos archivo
+						printf("Eliminado con exito\n");
+					else
+						printf("No se pudo eliminar\n");
+					
+					if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
+						printf("Cambiado con exito\n");
+					else
+						printf("No se pudo cambiar\n");
+					
 				}
 				else
 				printf("Error al introducir Usuario y contrasena\n");

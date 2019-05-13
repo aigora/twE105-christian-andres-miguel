@@ -269,7 +269,7 @@ while (fin!=0){
 						}
 						else{
 							usuarios.puntos=puntos(ListaCompra,elementosComprados);
-							fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
+							fprintf(pregistro,"%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
 							registrado=1;
 							aplicadescuento=1;
 							printf("Usuario nuevo creado\n");

@@ -233,8 +233,11 @@ while (fin!=0){
 						printf("No se pudo cambiar\n");
 					
 				}
-				else
-				printf("Error al introducir Usuario y contrasena\n");
+				else 
+					if (comparado==0)
+				printf("El nombre de usuario %s no esta registrado\n",usuarios.usuario);
+					else
+				printf("Error al introducir contrasena\n");
 				break;
 			case 'n':
 			case 'N':

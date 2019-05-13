@@ -89,7 +89,13 @@ else
 //	printf("%i",nLineas);
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
-	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
+printf(" Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
+fflush( stdin );
+scanf(" %c",&lugar);
+	switch (lugar){
+case 'c':
+case 'C':
+printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
 while (fin!=0){
 	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
 	fflush( stdin );
@@ -292,6 +298,14 @@ printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
 sleep(3);
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
+break;
+case 'p':
+case 'P':
+	break;
+default:
+	printf("No le hemos entendido\n");
+	sleep(2);
+}
 }//while repetitivo
 }//Acaba main
 

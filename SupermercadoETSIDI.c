@@ -86,7 +86,7 @@ else
 		i++;
 	}
 	nLineas=i;
-//	printf("%i",nLineas);
+//printf("%i",nLineas);
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
 printf(" Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");

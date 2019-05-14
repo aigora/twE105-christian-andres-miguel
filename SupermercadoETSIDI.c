@@ -347,7 +347,7 @@ case 'P':
 		sleep(2);
 		}
 	}
-	break;
+	break;//---------------------------------------SI TENEIS TIEMPO INTRODUCIR CANTIDAD Y ESO-------------------------------------
 default:
 	printf("No le hemos entendido\n");
 	sleep(2);

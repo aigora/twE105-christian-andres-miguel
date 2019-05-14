@@ -29,7 +29,6 @@ int elementosComprados=0;
 int segundos;
 int minutos;
 int nLineas;
-int tmp;
 usuariocontrasena usuarios;
 usuariocontrasena registro[100];
 productos ListaCompra[10];
@@ -57,8 +56,7 @@ else
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
 	i=0;
-	while(fscanf(pregistro,"%i;%[^;];%i;%i)",&tmp, registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)	{
-		printf("%s %i %i\n", registro[i].usuario, registro[i].contrasena, registro[i].puntos);
+	while(fscanf(pregistro,"%i;%[^;];%i", &registro[i].contrasena,registro[i].usuario,&registro[i].puntos) != EOF)	{
 		i++;
 	}
 	nLineas=i;
@@ -178,7 +176,7 @@ while (fin!=0){
 				for (k=0;k<nLineas;k++){
 					printf("%s\n",registro[k].usuario);
 					printf("%s\n",usuarios.usuario);
-					if(strcmp(usuarios.usuario,registro[k].usuario)==0){ //Compara ambos nombres de usuarios -----------Pero solo con el primero da 0----------------
+					if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
 					comparado++;
 					z=k; //Guarda la posicion en la cual esta el usuario
 					}
@@ -198,9 +196,9 @@ while (fin!=0){
 					else{
 						for(i=0;i<nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
 							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
-							fprintf(paux,"%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);
+							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);
 							else 
-							fprintf(paux,"%s;%i;%i",registro[i].usuario,registro[i].contrasena,registro[i].puntos);
+							fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
 						} 
 					}
 					fclose(paux);
@@ -232,8 +230,6 @@ while (fin!=0){
 					comparado=0;
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
 							for (k=0;k<nLineas;k++){
-								printf("%s\t",registro[k].usuario);
-								printf("%s\t",usuarios.usuario);
 								if(strcmp(usuarios.usuario,registro[k].usuario)==0){   // -----------------Mirar porque solo funciona con el primer usuario-------------------
 									comparado++;
 								}
@@ -254,12 +250,13 @@ while (fin!=0){
 						}
 						else{
 							usuarios.puntos=puntos(ListaCompra,elementosComprados);
-							fprintf(pregistro,"%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
+							fprintf(pregistro,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
 							registrado=1;
 							aplicadescuento=1;
 							printf("Usuario nuevo creado\n");
 							printf("Obtienes %i puntos por tu compra\n",usuarios.puntos);
 						}
+						fclose(pregistro);
 				}
 				else if(sn=='n' || sn=='N'){
 					registrado=1;

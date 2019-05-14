@@ -29,20 +29,23 @@ int elementosComprados=0;
 int segundos;
 int minutos;
 int nLineas;
+int k,z=0;
 usuariocontrasena usuarios;
 usuariocontrasena registro[100];
 productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
-productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de productos de cada seccion
-FILE *pf,*pf2,*pf3,*pf4,*pregistro,*paux;//punteros para ficheros
+productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de prouctos de cada seccion
+regalos lista_regalos[10];
+FILE *pf,*pf2,*pf3,*pf4,*pf5,*pregistro,*paux;//punteros para ficheros
 pf = fopen("pescaderia.txt", "r");
 pf2 = fopen("panaderia.txt", "r");
 pf3 = fopen("fruteria.txt", "r");
 pf4 = fopen("carniceria.txt", "r");
+pf5 = fopen("regalos.txt", "r");
 pregistro = fopen("usuarios.txt", "r");
 
-if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL || pregistro == NULL){
+if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL || pf5==NULL || pregistro == NULL){
 	printf("Error al abrir el fichero.\n");
 	return -1;	
 }
@@ -54,6 +57,7 @@ else
 		fscanf(pf2,"%i;%[^;];%f;%i",&lista_pan[j].numero,&lista_pan[j].nombre,&lista_pan[j].precio,&lista_pan[j].cantidad);
 		fscanf(pf3,"%i;%[^;];%f;%i",&lista_fruta[j].numero,&lista_fruta[j].nombre,&lista_fruta[j].precio,&lista_fruta[j].cantidad);
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
+		fscanf(pf5,"%i;%[^;];%i",&lista_regalos[j].numero,&lista_regalos[j].nombre,&lista_regalos[j].puntos);
 	}
 	i=0;
 	while(fscanf(pregistro,"%i;%[^;];%i", &registro[i].contrasena,registro[i].usuario,&registro[i].puntos) != EOF)	{
@@ -166,7 +170,6 @@ while (fin!=0){
 		printf("Tienes tarjeta de descuento?  (si o no)\n");
 		fflush( stdin );
 		scanf(" %c", &sn );
-		int k,z=0;
 		switch (sn){
 			case 's':
 			case 'S':
@@ -274,13 +277,77 @@ precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//I
 break;
 case 'p':
 case 'P':
+	printf("Introduce tu usuario y contraseña (Ejemplo: pepe 239)\n");
+//	while(registrado==0){
+//		scanf("%s %i",usuarios.usuario,usuarios.contrasena);
+//		comparado=0;
+//		for (k=0;k<nLineas;k++){
+//			printf("%s\n",registro[k].usuario);
+//			printf("%s\n",usuarios.usuario);
+//			if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
+//			comparado++;
+//			z=k; //Guarda la posicion en la cual esta el usuario
+//			}
+//		}
+//		printf("%i\n",comparado);
+//		if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
+//			aplicadescuento=1;
+//			registrado=1;
+//			printf("Bienvenido %s, usted tiene %i puntos\n",usuarios.usuario,registro[z].puntos);
+//			printListaRegalos(lista_regalos,10);
+//			printf("Elige un articulo\n");
+//			j=0;
+//			while(j==0){
+//				fflush( stdin );
+//				scanf("%i",&numeroProducto);//Te pide el numero del producto
+//				if (numeroProducto>0 && numeroProducto<11){
+//					if(registro[z].puntos>lista_regalos[numeroProducto].puntos){
+//						registro[z].puntos-=lista_regalos[numeroProducto].puntos;
+//						paux = fopen("auxiliar.txt", "w");
+//						if (paux == NULL){
+//							printf("Error al abrir el fichero.\n");
+//							return -1;	
+//						}
+//						else{
+//							for(i=0;i<nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+//								if(strcmp(usuarios.usuario, registro[i].usuario)==0)
+//									fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,registro[z].puntos);
+//								else 
+//									fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
+//							} 
+//						}
+//						fclose(paux);
+//						if(remove("usuarios.txt")==0)	//Borramos archivo
+//							printf("Eliminado con exito\n");
+//						else
+//							printf("No se pudo eliminar\n");
+//						
+//						if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
+//							printf("Cambiado con exito\n");
+//						else
+//							printf("No se pudo cambiar\n");
+//						j=1;
+//					}
+//					else
+//					printf("Puntos insuficientes\n");
+//					j=1;
+//				}
+//				else
+//				printf("Numero incorrecto\n");
+//			}
+//		}
+//		else{
+//		printf("Error al introducir usuario y contraseña");
+//		registrado=1;
+//		}
+//	}
 	break;
 default:
 	printf("No le hemos entendido\n");
 	sleep(2);
-}
+}//switch comprar regalos
 }//while repetitivo
-};//Acaba main
+}//Acaba main
 
 
 

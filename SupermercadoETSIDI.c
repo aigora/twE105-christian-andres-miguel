@@ -71,10 +71,16 @@ else
 		i++;
 	}
 	nLineas=i;
-//	printf("%i",nLineas);
+//printf("%i",nLineas);
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
-	printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
+printf(" Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
+fflush( stdin );
+scanf(" %c",&lugar);
+	switch (lugar){
+case 'c':
+case 'C':
+printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
 while (fin!=0){
 	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
 	fflush( stdin );
@@ -218,8 +224,11 @@ while (fin!=0){
 						printf("No se pudo cambiar\n");
 					
 				}
-				else
-				printf("Error al introducir Usuario y contrasena\n");
+				else 
+					if (comparado==0)
+				printf("El nombre de usuario %s no esta registrado\n",usuarios.usuario);
+					else
+				printf("Error al introducir contrasena\n");
 				break;
 			case 'n':
 			case 'N':
@@ -254,7 +263,7 @@ while (fin!=0){
 						}
 						else{
 							usuarios.puntos=puntos(ListaCompra,elementosComprados);
-							fprintf(pregistro,"%s;%i;%i\n",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
+							fprintf(pregistro,"%s;%i;%i",usuarios.usuario,usuarios.contrasena,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
 							registrado=1;
 							aplicadescuento=1;
 							printf("Usuario nuevo creado\n");
@@ -274,6 +283,14 @@ printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
 sleep(3);
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
+break;
+case 'p':
+case 'P':
+	break;
+default:
+	printf("No le hemos entendido\n");
+	sleep(2);
+}
 }//while repetitivo
 }//Acaba main
 

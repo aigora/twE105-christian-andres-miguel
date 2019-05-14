@@ -278,69 +278,75 @@ break;
 case 'p':
 case 'P':
 	printf("Introduce tu usuario y contraseña (Ejemplo: pepe 239)\n");
-//	while(registrado==0){
-//		scanf("%s %i",usuarios.usuario,usuarios.contrasena);
-//		comparado=0;
-//		for (k=0;k<nLineas;k++){
-//			printf("%s\n",registro[k].usuario);
-//			printf("%s\n",usuarios.usuario);
-//			if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
-//			comparado++;
-//			z=k; //Guarda la posicion en la cual esta el usuario
-//			}
-//		}
-//		printf("%i\n",comparado);
-//		if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
-//			aplicadescuento=1;
-//			registrado=1;
-//			printf("Bienvenido %s, usted tiene %i puntos\n",usuarios.usuario,registro[z].puntos);
-//			printListaRegalos(lista_regalos,10);
-//			printf("Elige un articulo\n");
-//			j=0;
-//			while(j==0){
-//				fflush( stdin );
-//				scanf("%i",&numeroProducto);//Te pide el numero del producto
-//				if (numeroProducto>0 && numeroProducto<11){
-//					if(registro[z].puntos>lista_regalos[numeroProducto].puntos){
-//						registro[z].puntos-=lista_regalos[numeroProducto].puntos;
-//						paux = fopen("auxiliar.txt", "w");
-//						if (paux == NULL){
-//							printf("Error al abrir el fichero.\n");
-//							return -1;	
-//						}
-//						else{
-//							for(i=0;i<nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
-//								if(strcmp(usuarios.usuario, registro[i].usuario)==0)
-//									fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,registro[z].puntos);
-//								else 
-//									fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
-//							} 
-//						}
-//						fclose(paux);
-//						if(remove("usuarios.txt")==0)	//Borramos archivo
-//							printf("Eliminado con exito\n");
-//						else
-//							printf("No se pudo eliminar\n");
-//						
-//						if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
-//							printf("Cambiado con exito\n");
-//						else
-//							printf("No se pudo cambiar\n");
-//						j=1;
-//					}
-//					else
-//					printf("Puntos insuficientes\n");
-//					j=1;
-//				}
-//				else
-//				printf("Numero incorrecto\n");
-//			}
-//		}
-//		else{
-//		printf("Error al introducir usuario y contraseña");
-//		registrado=1;
-//		}
-//	}
+	while(registrado==0){
+		scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
+		comparado=0;
+		for (k=0;k<nLineas;k++){
+			printf("%s\n",registro[k].usuario);
+			printf("%s\n",usuarios.usuario);
+			if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
+			comparado++;
+			z=k; //Guarda la posicion en la cual esta el usuario
+			}
+		}
+		printf("%i\n",comparado);
+		if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
+			aplicadescuento=1;
+			registrado=1;
+			printf("Bienvenido %s, usted tiene %i puntos\n",usuarios.usuario,registro[z].puntos);
+			printListaRegalos(lista_regalos,10);
+			printf("Elige un articulo\n");
+			j=0;
+			while(j==0){
+				fflush( stdin );
+				scanf("%i",&numeroProducto);//Te pide el numero del producto
+				if (numeroProducto>0 && numeroProducto<11){
+					if(registro[z].puntos>=lista_regalos[numeroProducto-1].puntos){
+						registro[z].puntos-=lista_regalos[numeroProducto-1].puntos;
+						paux = fopen("auxiliar.txt", "w");
+						if (paux == NULL){
+							printf("Error al abrir el fichero.\n");
+							return -1;	
+						}
+						else{
+							for(i=0;i<nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
+									fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,registro[z].puntos);
+								else 
+									fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
+							} 
+						}
+						fclose(paux);
+						if(remove("usuarios.txt")==0)	//Borramos archivo
+							printf("Eliminado con exito\n");
+						else
+							printf("No se pudo eliminar\n");
+						
+						if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
+							printf("Cambiado con exito\n");
+						else
+							printf("No se pudo cambiar\n");
+						j=1;
+						printf("Ha obtenido %s",lista_regalos[numeroProducto-1].nombre);
+						sleep(2);
+						
+					}
+					else
+					printf("Puntos insuficientes\n");
+					sleep(2);
+					j=1;
+				}
+				else
+				printf("Numero incorrecto\n");
+				sleep(2);
+			}
+		}
+		else{
+		printf("Error al introducir usuario y contraseña");
+		registrado=1;
+		sleep(2);
+		}
+	}
 	break;
 default:
 	printf("No le hemos entendido\n");

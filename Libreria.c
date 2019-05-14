@@ -1,4 +1,5 @@
 #include "Libreria.h"
+
 void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 	int i=0;
 	printf("Numero\t\t Nombre\t\t\t Precio\t Cantidad\n");
@@ -6,7 +7,7 @@ void printLista(productos lista[10], int n){///Funcion que imprime cada lista
 		printf("%d\t %s\t %.2f\t %i\n",
 		lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);
 	}
-}
+};
 
 void precioTotal(productos *lugarLista, int elementosComprados,float parking, int descuento){//Funcion que imprime el precio total
 	int i=0;
@@ -48,7 +49,7 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking, in
 		printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos*descuento095+parking));//Muestra la cantidad a devolver
 	}
 	sleep(3);
-}
+};
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)//Funcion que incrementa cada articulo a la lista de la compra
 {
 	int numeroProducto,cantidad;
@@ -77,7 +78,7 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 		}
 	lugarLista->cantidad=cantidad;//Escribe la cantidad en su lugar
 	lugarLista->precio=cantidad*(lugarLista->precio);//Multiplica la cantidad por el precio para mostrar el precio total
-}
+};
 int puntos(productos *lugarLista, int elementosComprados){
 	int i=0;
 	float sumaPrecioProductos=0;//Cantidad que comprara cliente 
@@ -90,4 +91,4 @@ int puntos(productos *lugarLista, int elementosComprados){
 		return sumaPrecioProductos/5;
 	else 
 		return sumaPrecioProductos/10;
-}
+};

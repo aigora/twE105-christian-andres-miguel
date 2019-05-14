@@ -1,16 +1,5 @@
 #include "Libreria.h"
-typedef struct{
-	int numero;
-	char nombre[40];
-	float precio;
-	int cantidad;
-}productos;
 
-typedef struct{
-	char usuario[40];
-	int contrasena;
-	int puntos;
-}usuariocontrasena;
 
 
 int main(int argc, char** argv){
@@ -40,6 +29,7 @@ int elementosComprados=0;
 int segundos;
 int minutos;
 int nLineas;
+int tmp;
 usuariocontrasena usuarios;
 usuariocontrasena registro[100];
 productos ListaCompra[10];
@@ -67,7 +57,8 @@ else
 		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
 	}
 	i=0;
-	while(fscanf(pregistro,"%[^;];%i;%i)",registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)	{
+	while(fscanf(pregistro,"%i;%[^;];%i;%i)",&tmp, registro[i].usuario,&registro[i].contrasena,&registro[i].puntos) != EOF)	{
+		printf("%s %i %i\n", registro[i].usuario, registro[i].contrasena, registro[i].puntos);
 		i++;
 	}
 	nLineas=i;
@@ -292,7 +283,7 @@ default:
 	sleep(2);
 }
 }//while repetitivo
-}//Acaba main
+};//Acaba main
 
 
 

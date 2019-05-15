@@ -17,7 +17,7 @@ int usuarionuevo=0;
 int aplicadescuento=0;
 int entendido;
 int park;
-int comparar,comparado;
+int comparado;//Para comparar usuarios
 char lugar;
 char sn;//si o no
 int i,j;
@@ -143,7 +143,7 @@ while (fin!=0){
    			minutos=delta/60;
    			segundos=delta-minutos*delta;
    			
-			if(delta>120){
+			if(delta>120){//Si han pasado 2 minutos se cobrara el parking
 			printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
 			precioParking=2+(delta-120)*0.005;
 			sleep(2);
@@ -191,7 +191,7 @@ while (fin!=0){
 					}
 				}
 				printf("%i\n",comparado);
-				if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
+				if (comparado==1 && registro[z].contrasena==usuarios.contrasena){//Comparara las contrasenas cuando escribimos bien el usuario
 					aplicadescuento=1;
 					registrado=1;
 					printf("Usuario Correcto\n");
@@ -205,7 +205,7 @@ while (fin!=0){
 					else{
 						for(i=0;i<nUsuario;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
 							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
-							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);
+							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);//Introduce al usuario con sus puntos actualizados
 							else 
 							fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
 						} 
@@ -239,7 +239,7 @@ while (fin!=0){
 					comparado=0;
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
 							for (k=0;k<nUsuario;k++){
-								if(strcmp(usuarios.usuario,registro[k].usuario)==0){  
+								if(strcmp(usuarios.usuario,registro[k].usuario)==0){  //Compara el usuario introducido con los usuarios que ya existian
 									comparado++;
 								}
 							}
@@ -247,7 +247,7 @@ while (fin!=0){
 								usuarionuevo=1;
 							}
 							else{
-								printf("El usuario %s ya existe, escribe otro usuario y contrasena\n",usuarios.usuario);
+								printf("El usuario %s ya existe, escribe otro usuario y contrasena\n",usuarios.usuario);//Si coincide con un usuario existente, te pide que escribas uno nuevo
 								scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 								comparado=0;
 							}
@@ -261,9 +261,9 @@ while (fin!=0){
 					else{
 						for(i=0;i<nUsuario+1;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
 							if(i<nUsuario)
-							fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
+							fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);//Copia los usuarios que ya estaban en su mismo lugar
 							else 
-							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);
+							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);//Agrega el nuevo usuario
 						} 
 					}
 					fclose(paux);

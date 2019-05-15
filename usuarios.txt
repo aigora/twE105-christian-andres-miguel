@@ -2,3 +2,4 @@
 123;oscar;0
 10;pepe;96
 12;tejinero;234
+43;manu;0

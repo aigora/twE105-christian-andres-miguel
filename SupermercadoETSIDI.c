@@ -347,7 +347,7 @@ case 'P':
 		sleep(2);
 		}
 	}
-	break;//---------------------------------------SI TENEIS TIEMPO INTRODUCIR CANTIDAD Y ESO-------------------------------------
+	break;
 default:
 	printf("No le hemos entendido\n");
 	sleep(2);
@@ -355,10 +355,4 @@ default:
 }//while repetitivo
 }//Acaba main
 
-
-
-
-
-
-//funciones
 

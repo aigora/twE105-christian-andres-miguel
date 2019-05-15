@@ -58,7 +58,7 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking, in
 	}
 	sleep(3);
 };
-void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados)//Funcion que incrementa cada articulo a la lista de la compra
+void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados,int nProducto)//Funcion que incrementa cada articulo a la lista de la compra
 {
 	int numeroProducto,cantidad;
 	int i=1;
@@ -67,7 +67,7 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 	{
 		scanf("%i",&numeroProducto);//Te pide el numero del producto
 
-		if (numeroProducto>0 && numeroProducto<11){
+		if (numeroProducto>0 && numeroProducto<nProducto+1){
 			*lugarLista=nLista[numeroProducto-1];//Rellena el puntero lugarLista con los datos del producto seleccionado
 			lugarLista->numero=elementosComprados+1;//Cambia el numero del producto por el del numero de productos que lleves comprados
 			i=0;//Para salir del while

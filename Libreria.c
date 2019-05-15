@@ -24,7 +24,7 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking, in
 	float descuento095=0.95;
 	for (i=0; i<elementosComprados; i++)
 	{
-		sumaPrecioProductos+=(lugarLista->precio);
+		sumaPrecioProductos+=(lugarLista->precio);//suma los precios de los productos
 		lugarLista++;
 	}
 	if (descuento==0)
@@ -89,11 +89,11 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 };
 int puntos(productos *lugarLista, int elementosComprados){
 	int i=0;
-	float sumaPrecioProductos=0;//Cantidad que comprara cliente 
+	float sumaPrecioProductos=0;//Precio a pagar por el cliente
 	for (i=0; i<elementosComprados; i++)
 	{
 		sumaPrecioProductos+=(lugarLista->precio);
-		lugarLista++;
+		lugarLista++;//puntero que ira apuntando a los productos de la lista de la compra
 	}
 	if (sumaPrecioProductos>50)
 		return sumaPrecioProductos/5;

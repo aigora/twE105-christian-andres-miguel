@@ -32,11 +32,11 @@ int nUsuario=0;//numero de usuarios
 int k,z=0;
 usuariocontrasena usuarios;
 usuariocontrasena registro[100];
-productos ListaCompra[10];
+productos ListaCompra[20];
 productos *lugarLista;
 lugarLista=ListaCompra;
 int nPan=0,nPes=0,nFru=0,nCa=0,nReg=0;//Numero de productos en listas
-productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de prouctos de cada seccion
+productos lista_pan[100],lista_pescado[100], lista_fruta[100], lista_carne[100];//Lista de prouctos de cada seccion
 regalos lista_regalos[10];
 FILE *pf,*pf2,*pf3,*pf4,*pf5,*pregistro,*paux;//punteros para ficheros
 pf = fopen("pescaderia.txt", "r");

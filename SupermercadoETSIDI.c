@@ -28,13 +28,14 @@ int numeroProducto;
 int elementosComprados=0;
 int segundos;
 int minutos;
-int nLineas;
+int nUsuario=0;//numero de usuarios
 int k,z=0;
 usuariocontrasena usuarios;
 usuariocontrasena registro[100];
 productos ListaCompra[10];
 productos *lugarLista;
 lugarLista=ListaCompra;
+int nPan=0,nPes=0,nFru=0,nCa=0,nReg=0;//Numero de productos en listas
 productos lista_pan[10],lista_pescado[10], lista_fruta[10], lista_carne[10];//Lista de prouctos de cada seccion
 regalos lista_regalos[10];
 FILE *pf,*pf2,*pf3,*pf4,*pf5,*pregistro,*paux;//punteros para ficheros
@@ -51,20 +52,25 @@ if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL || pf5==NULL || preg
 }
 else
 {
-	for(j=0;j<10;j++)//-------------Deberiamos cambiar el 10 por una variable------------------
-	{
-		fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[j].numero,&lista_pescado[j].nombre,&lista_pescado[j].precio,&lista_pescado[j].cantidad);//mete los productos de la pescaderia
-		fscanf(pf2,"%i;%[^;];%f;%i",&lista_pan[j].numero,&lista_pan[j].nombre,&lista_pan[j].precio,&lista_pan[j].cantidad);
-		fscanf(pf3,"%i;%[^;];%f;%i",&lista_fruta[j].numero,&lista_fruta[j].nombre,&lista_fruta[j].precio,&lista_fruta[j].cantidad);
-		fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[j].numero,&lista_carne[j].nombre,&lista_carne[j].precio,&lista_carne[j].cantidad);
-		fscanf(pf5,"%i;%[^;];%i",&lista_regalos[j].numero,&lista_regalos[j].nombre,&lista_regalos[j].puntos);
+	while(fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[i].numero,&lista_pescado[i].nombre,&lista_pescado[i].precio,&lista_pescado[i].cantidad)!= EOF){//mete los productos de la pescaderia
+		nPes++;
 	}
-	i=0;
-	while(fscanf(pregistro,"%i;%[^;];%i", &registro[i].contrasena,registro[i].usuario,&registro[i].puntos) != EOF)	{
-		i++;
+	while(fscanf(pf2,"%i;%[^;];%f;%i",&lista_pan[nPan].numero,&lista_pan[nPan].nombre,&lista_pan[nPan].precio,&lista_pan[nPan].cantidad)!= EOF){
+		nPan++;
 	}
-	nLineas=i;
-//printf("%i",nLineas);
+	while(fscanf(pf3,"%i;%[^;];%f;%i",&lista_fruta[nFru].numero,&lista_fruta[nFru].nombre,&lista_fruta[nFru].precio,&lista_fruta[nFru].cantidad)!= EOF){
+		nFru++;
+	}
+	while(fscanf(pf4,"%i;%[^;];%f;%i",&lista_carne[nCa].numero,&lista_carne[nCa].nombre,&lista_carne[nCa].precio,&lista_carne[nCa].cantidad)!= EOF){
+		nCa++;
+	}
+	while(fscanf(pf5,"%i;%[^;];%i",&lista_regalos[nReg].numero,&lista_regalos[nReg].nombre,&lista_regalos[nReg].puntos)!= EOF){
+		nReg++;
+	}
+	while(fscanf(pregistro,"%i;%[^;];%i", &registro[nUsuario].contrasena,registro[nUsuario].usuario,&registro[nUsuario].puntos) != EOF)	{
+		nUsuario++;
+	}
+
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
 printf(" Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
@@ -82,26 +88,26 @@ while (fin!=0){
 		case 'd':
 		case 'D':
 			printf("Elija el articulo que desee de la seccion de panaderia\n");
-			printLista(lista_pan, 10);
-			anadir_a_lista(lista_pan, (lugarLista+elementosComprados), elementosComprados);
+			printLista(lista_pan, nPan);
+			anadir_a_lista(lista_pan, (lugarLista+elementosComprados), elementosComprados,nPan);
 			break;
 		case 'p':
 		case 'P':
 			printf("Elija el articulo que desee de la seccion de pescaderia\n");
-			printLista(lista_pescado, 10);
-			anadir_a_lista(lista_pescado, (lugarLista+elementosComprados), elementosComprados);
+			printLista(lista_pescado, nPes);
+			anadir_a_lista(lista_pescado, (lugarLista+elementosComprados), elementosComprados,nPes);
 			break;
 		case 'f':
 		case 'F':
 			printf("Elija el articulo que desee de la seccion de fruteria\n");
-			printLista(lista_fruta, 10);
-			anadir_a_lista(lista_fruta, (lugarLista+elementosComprados), elementosComprados);
+			printLista(lista_fruta, nFru);
+			anadir_a_lista(lista_fruta, (lugarLista+elementosComprados), elementosComprados,nFru);
 			break;
 		case 'c':
 		case 'C':
 			printf("Elija el articulo que desee de la seccion de carniceria\n");
-			printLista(lista_carne, 10);
-			anadir_a_lista(lista_carne, (lugarLista+elementosComprados), elementosComprados);
+			printLista(lista_carne, nCa);
+			anadir_a_lista(lista_carne, (lugarLista+elementosComprados), elementosComprados,nCa);
 			break;
 		default:
 			printf("No tenemos esa seccion\n");
@@ -176,7 +182,7 @@ while (fin!=0){
 				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito 5656)\n");
 				scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 				comparado=0;
-				for (k=0;k<nLineas;k++){
+				for (k=0;k<nUsuario;k++){
 					printf("%s\n",registro[k].usuario);
 					printf("%s\n",usuarios.usuario);
 					if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
@@ -197,7 +203,7 @@ while (fin!=0){
 						return -1;	
 					}
 					else{
-						for(i=0;i<nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+						for(i=0;i<nUsuario;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
 							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
 							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);
 							else 
@@ -232,7 +238,7 @@ while (fin!=0){
 					scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 					comparado=0;
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
-							for (k=0;k<nLineas;k++){
+							for (k=0;k<nUsuario;k++){
 								if(strcmp(usuarios.usuario,registro[k].usuario)==0){   // -----------------Mirar porque solo funciona con el primer usuario-------------------
 									comparado++;
 								}
@@ -281,7 +287,7 @@ case 'P':
 	while(registrado==0){
 		scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 		comparado=0;
-		for (k=0;k<nLineas;k++){
+		for (k=0;k<nUsuario;k++){
 			printf("%s\n",registro[k].usuario);
 			printf("%s\n",usuarios.usuario);
 			if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
@@ -294,13 +300,13 @@ case 'P':
 			aplicadescuento=1;
 			registrado=1;
 			printf("Bienvenido %s, usted tiene %i puntos\n",usuarios.usuario,registro[z].puntos);
-			printListaRegalos(lista_regalos,10);
+			printListaRegalos(lista_regalos,nReg);
 			printf("Elige un articulo\n");
 			j=0;
 			while(j==0){
 				fflush( stdin );
 				scanf("%i",&numeroProducto);//Te pide el numero del producto
-				if (numeroProducto>0 && numeroProducto<11){
+				if (numeroProducto>0 && numeroProducto<nReg+1){
 					if(registro[z].puntos>=lista_regalos[numeroProducto-1].puntos){
 						registro[z].puntos-=lista_regalos[numeroProducto-1].puntos;
 						paux = fopen("auxiliar.txt", "w");
@@ -309,7 +315,7 @@ case 'P':
 							return -1;	
 						}
 						else{
-							for(i=0;i<nLineas;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+							for(i=0;i<nUsuario;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
 							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
 									fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,registro[z].puntos);
 								else 

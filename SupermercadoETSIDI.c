@@ -239,7 +239,7 @@ while (fin!=0){
 					comparado=0;
 						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
 							for (k=0;k<nUsuario;k++){
-								if(strcmp(usuarios.usuario,registro[k].usuario)==0){   // -----------------Mirar porque solo funciona con el primer usuario-------------------
+								if(strcmp(usuarios.usuario,registro[k].usuario)==0){  
 									comparado++;
 								}
 							}
@@ -252,20 +252,30 @@ while (fin!=0){
 								comparado=0;
 							}
 						}
-						pregistro = fopen("usuarios.txt", "a");
-						if (pregistro == NULL){
-							printf("Error al abrir el fichero.\n");
+					registrado=1;
+					paux = fopen("auxiliar.txt", "w");
+					if (paux == NULL){
+						printf("Error al abrir el fichero.\n");
 						return -1;	
-						}
-						else{
-							usuarios.puntos=puntos(ListaCompra,elementosComprados);
-							fprintf(pregistro,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);// Anade el nuevo usuario con sus respectivos puntos
-							registrado=1;
-							aplicadescuento=1;
-							printf("Usuario nuevo creado\n");
-							printf("Obtienes %i puntos por tu compra\n",usuarios.puntos);
-						}
-						fclose(pregistro);
+					}
+					else{
+						for(i=0;i<nUsuario+1;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+							if(i<nUsuario)
+							fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
+							else 
+							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);
+						} 
+					}
+					fclose(paux);
+					if(remove("usuarios.txt")==0)	//Borramos archivo
+						printf("Eliminado con exito\n");
+					else
+						printf("No se pudo eliminar\n");
+					
+					if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
+						printf("Cambiado con exito\n");
+					else
+						printf("No se pudo cambiar\n");
 				}
 				else if(sn=='n' || sn=='N'){
 					registrado=1;

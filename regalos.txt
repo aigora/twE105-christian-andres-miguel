@@ -1,0 +1,10 @@
+1;patinete;15
+2;bicicleta;20
+3;television;40
+4;moto;100
+5;champu;2
+6;piruleta;1
+7;mochila;10
+8;balon;10
+9;zapatillas;10
+10;escritorio;20

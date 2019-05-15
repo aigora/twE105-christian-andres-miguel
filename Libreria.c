@@ -1,13 +1,21 @@
 #include "Libreria.h"
 
 void printLista(productos lista[10], int n){///Funcion que imprime cada lista
-	int i=0;
+	int i;
 	printf("Numero\t\t Nombre\t\t\t Precio\t Cantidad\n");
 	for (i=0; i<n; i++){
-		printf("%d\t %s\t %.2f\t %i\n",
-		lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);
+		printf("%d\t %s\t %.2f\t %i\n",lista[i].numero, lista[i].nombre, lista[i].precio, lista[i].cantidad);
 	}
 };
+
+void printListaRegalos(regalos lista[10],int n){
+	int i;
+	printf("Numero\t\t Nombre\t\t\t Puntos\n");
+	for (i=0; i<n; i++){
+		printf("%i\t %s\t %i\n",lista[i].numero, lista[i].nombre, lista[i].puntos);	
+	}
+}
+
 
 void precioTotal(productos *lugarLista, int elementosComprados,float parking, int descuento){//Funcion que imprime el precio total
 	int i=0;

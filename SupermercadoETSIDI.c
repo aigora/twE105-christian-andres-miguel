@@ -21,7 +21,6 @@ int comparado;//Para comparar usuarios
 char lugar;
 char sn;//si o no
 int i,j;
-char x;
 float precioParking=0;
 float sumaPrecioProductos=0;
 int numeroProducto;
@@ -183,14 +182,11 @@ while (fin!=0){
 				scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 				comparado=0;
 				for (k=0;k<nUsuario;k++){
-					printf("%s\n",registro[k].usuario);
-					printf("%s\n",usuarios.usuario);
 					if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
 					comparado++;
 					z=k; //Guarda la posicion en la cual esta el usuario
 					}
 				}
-				printf("%i\n",comparado);
 				if (comparado==1 && registro[z].contrasena==usuarios.contrasena){//Comparara las contrasenas cuando escribimos bien el usuario
 					aplicadescuento=1;
 					registrado=1;
@@ -288,7 +284,7 @@ while (fin!=0){
 	}//Acaba while registro
 printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
-sleep(3);
+sleep(2);
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
 break;
 case 'p':
@@ -298,8 +294,6 @@ case 'P':
 		scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 		comparado=0;
 		for (k=0;k<nUsuario;k++){
-			printf("%s\n",registro[k].usuario);
-			printf("%s\n",usuarios.usuario);
 			if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
 			comparado++;
 			z=k; //Guarda la posicion en la cual esta el usuario
@@ -366,7 +360,7 @@ case 'P':
 	break;
 default:
 	printf("No le hemos entendido\n");
-	sleep(2);
+	sleep(1);
 }//switch comprar regalos
 }//while repetitivo
 }//Acaba main

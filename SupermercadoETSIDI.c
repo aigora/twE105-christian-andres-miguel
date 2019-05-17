@@ -52,7 +52,7 @@ if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL || pf5==NULL || preg
 }
 else
 {
-	while(fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[i].numero,&lista_pescado[i].nombre,&lista_pescado[i].precio,&lista_pescado[i].cantidad)!= EOF){//mete los productos de la pescaderia
+	while(fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[nPes].numero,&lista_pescado[nPes].nombre,&lista_pescado[nPes].precio,&lista_pescado[nPes].cantidad)!= EOF){//mete los productos de la pescaderia
 		nPes++;
 	}
 	while(fscanf(pf2,"%i;%[^;];%f;%i",&lista_pan[nPan].numero,&lista_pan[nPan].nombre,&lista_pan[nPan].precio,&lista_pan[nPan].cantidad)!= EOF){

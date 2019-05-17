@@ -72,6 +72,7 @@ else
 
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
+system("Color F");
 printf("Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
 fflush( stdin );
 scanf(" %c",&lugar);
@@ -290,7 +291,6 @@ printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
 sleep(2);
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
-system("Color 7");//Volvemos al color blanco
 break;
 case 'p':
 case 'P':
@@ -364,7 +364,6 @@ case 'P':
 		sleep(2);
 		}
 	}
-	system("Color 7");
 	break;
 default:
 	printf("No le hemos entendido\n");

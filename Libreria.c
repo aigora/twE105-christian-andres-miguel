@@ -84,6 +84,7 @@ void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementos
 				fflush( stdin );
 				scanf("%i",&cantidad);//Te pide la cantidad del producto
 		}
+	nLista[numeroProducto-1].cantidad+=cantidad;//Al comprar varias veces un producto se va mostrando la cantidad
 	lugarLista->cantidad=cantidad;//Escribe la cantidad en su lugar
 	lugarLista->precio=cantidad*(lugarLista->precio);//Multiplica la cantidad por el precio para mostrar el precio total
 };

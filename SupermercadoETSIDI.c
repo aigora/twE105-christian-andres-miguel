@@ -249,6 +249,8 @@ while (fin!=0){
 							}
 						}
 					registrado=1;
+					usuarios.puntos=puntos(ListaCompra,elementosComprados);
+					printf("Ha obtenido %i puntos",usuarios.puntos);
 					paux = fopen("auxiliar.txt", "w");
 					if (paux == NULL){
 						printf("Error al abrir el fichero.\n");

@@ -72,15 +72,17 @@ else
 
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
-printf(" Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
+printf("Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
 fflush( stdin );
 scanf(" %c",&lugar);
 	switch (lugar){
 case 'c':
 case 'C':
+system("cls");//Limpiamos pantalla
+system("Color B");//Cambio de color
 printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
 while (fin!=0){
-	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
+	printf("Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
 	fflush( stdin );
 	scanf(" %c",&lugar);
 	switch (lugar){
@@ -288,9 +290,12 @@ printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
 sleep(2);
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
+system("Color 7");//Volvemos al color blanco
 break;
 case 'p':
 case 'P':
+	system("cls");//Limpiamos pantalla
+	system("Color E");//Cambiamos de color
 	printf("Introduce tu usuario y contraseña (Ejemplo: pepe 239)\n");
 	while(registrado==0){
 		scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
@@ -359,6 +364,7 @@ case 'P':
 		sleep(2);
 		}
 	}
+	system("Color 7");
 	break;
 default:
 	printf("No le hemos entendido\n");

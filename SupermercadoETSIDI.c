@@ -287,6 +287,7 @@ while (fin!=0){
 			break;
 		}
 	}//Acaba while registro
+system("cls");//Limpia pantalla
 printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
 sleep(2);

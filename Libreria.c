@@ -59,7 +59,7 @@ void precioTotal(productos *lugarLista, int elementosComprados,float parking, in
 		}
 		printf("Le devolvemos %.2f, tenga un buen dia\n",paga-(sumaPrecioProductos*descuento095+parking));//Muestra la cantidad a devolver
 	}
-	sleep(3);
+	sleep(1);
 };
 void anadir_a_lista(productos nLista[1000], productos *lugarLista, int elementosComprados,int nProducto)//Funcion que incrementa cada articulo a la lista de la compra
 {

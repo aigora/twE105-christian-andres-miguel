@@ -1,4 +1,4 @@
-6;cabe;8490
+6;cabe;1292189
 123;oscar;0
 10;pepe;96
 12;tejinero;234

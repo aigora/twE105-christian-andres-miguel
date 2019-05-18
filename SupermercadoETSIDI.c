@@ -301,7 +301,7 @@ case 'P':
 		scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 		comparado=0;
 		for (k=0;k<nUsuario;k++){
-			if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
+			if(strcmp(usuarios.usuario,registro[k].usuario)==0){
 			comparado++;
 			z=k; //Guarda la posicion en la cual esta el usuario
 			}
@@ -319,7 +319,7 @@ case 'P':
 				scanf("%i",&numeroProducto);//Te pide el numero del producto
 				if (numeroProducto>0 && numeroProducto<nReg+1){
 					if(registro[z].puntos>=lista_regalos[numeroProducto-1].puntos){
-						registro[z].puntos-=lista_regalos[numeroProducto-1].puntos;
+						registro[z].puntos-=lista_regalos[numeroProducto-1].puntos;//Resta los puntos al usuario tras la compra
 						paux = fopen("auxiliar.txt", "w");
 						if (paux == NULL){
 							printf("Error al abrir el fichero.\n");

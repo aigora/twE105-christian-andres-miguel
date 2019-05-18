@@ -134,6 +134,9 @@ while (fin!=0){
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
 			}
 	}//Pregunta si quieres mas cosas
+	if (elementosComprados==0){
+	break;
+	}
 	while(park==1)
 		{
 			printf("Ha usado parking?  (si o no)\n");
@@ -173,6 +176,9 @@ while (fin!=0){
 		printf("No le he entendido, le preguntaremos de nuevo.\n");
 			}
 		}
+	}
+	if (elementosComprados==0){
+	break;
 	}
 	while(registrado==0){
 		printf("Tienes tarjeta de descuento?  (si o no)\n");
@@ -288,9 +294,15 @@ while (fin!=0){
 		}
 	}//Acaba while registro
 system("cls");//Limpia pantalla
+	if (elementosComprados==0){
+	break;
+	}
 printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
 //printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
 sleep(2);
+	if (elementosComprados==0){
+	break;
+	}
 precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
 break;
 case 'p':

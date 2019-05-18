@@ -21,7 +21,6 @@ int comparado;//Para comparar usuarios
 char lugar;
 char sn;//si o no
 int i,j;
-char x;
 float precioParking=0;
 float sumaPrecioProductos=0;
 int numeroProducto;
@@ -52,7 +51,7 @@ if (pf == NULL || pf2 == NULL || pf3 == NULL || pf4 == NULL || pf5==NULL || preg
 }
 else
 {
-	while(fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[i].numero,&lista_pescado[i].nombre,&lista_pescado[i].precio,&lista_pescado[i].cantidad)!= EOF){//mete los productos de la pescaderia
+	while(fscanf(pf,"%i;%[^;];%f;%i",&lista_pescado[nPes].numero,&lista_pescado[nPes].nombre,&lista_pescado[nPes].precio,&lista_pescado[nPes].cantidad)!= EOF){//mete los productos de la pescaderia
 		nPes++;
 	}
 	while(fscanf(pf2,"%i;%[^;];%f;%i",&lista_pan[nPan].numero,&lista_pan[nPan].nombre,&lista_pan[nPan].precio,&lista_pan[nPan].cantidad)!= EOF){
@@ -73,301 +72,303 @@ else
 
 	fclose(pf),fclose(pf2),fclose(pf3),fclose(pf4),fclose(pregistro);//Cierra los ficheros
 }
-printf(" Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
+system("Color F");
+printf("Desea usted comprar(c) o canjear articulos con los puntos(p)?\n");
 fflush( stdin );
 scanf(" %c",&lugar);
 	switch (lugar){
-case 'c':
-case 'C':
-printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
-while (fin!=0){
-	printf(" Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
-	fflush( stdin );
-	scanf(" %c",&lugar);
-	switch (lugar){
-		case 'd':
-		case 'D':
-			printf("Elija el articulo que desee de la seccion de panaderia\n");
-			printLista(lista_pan, nPan);
-			anadir_a_lista(lista_pan, (lugarLista+elementosComprados), elementosComprados,nPan);
+		case 'c':
+		case 'C':
+			system("cls");//Limpiamos pantalla
+			system("Color B");//Cambio de color
+			printf("Bienvenido a nuestro supermecado, tenemos varias secciones donde usted podra comprar lo que quiera.\n");
+			while (fin!=0){
+				printf("Desea ir a la panaderia(d),pescaderia(p),fruteria(f) o carniceria(c)?\n");
+				fflush( stdin );
+				scanf(" %c",&lugar);
+				switch (lugar){
+					case 'd':
+					case 'D':
+						printf("Elija el articulo que desee de la seccion de panaderia\n");
+						printLista(lista_pan, nPan);
+						anadir_a_lista(lista_pan, (lugarLista+elementosComprados), elementosComprados,nPan);
+						break;
+					case 'p':
+					case 'P':
+						printf("Elija el articulo que desee de la seccion de pescaderia\n");
+						printLista(lista_pescado, nPes);
+						anadir_a_lista(lista_pescado, (lugarLista+elementosComprados), elementosComprados,nPes);
+						break;
+					case 'f':
+					case 'F':
+						printf("Elija el articulo que desee de la seccion de fruteria\n");
+						printLista(lista_fruta, nFru);
+						anadir_a_lista(lista_fruta, (lugarLista+elementosComprados), elementosComprados,nFru);
+						break;
+					case 'c':
+					case 'C':
+						printf("Elija el articulo que desee de la seccion de carniceria\n");
+						printLista(lista_carne, nCa);
+						anadir_a_lista(lista_carne, (lugarLista+elementosComprados), elementosComprados,nCa);
+						break;
+					default:
+						printf("No tenemos esa seccion\n");
+						elementosComprados--;//Evitamos la suma de un articulo nulo
+						break;
+				}
+				elementosComprados++;//Pasar a la siguiente posicion de la lista de la compra
+				entendido=1;	
+				while (entendido==1){
+					printf("Ha terminado su compra?  (si o no)\n");
+					fflush( stdin );
+					scanf(" %c", &sn );
+					if (sn=='s' || sn=='S'){
+					fin=0; entendido=0; park=1;//Muestra la cantidad a pagar
+					lugarLista++;
+					}
+					else if(sn=='n' || sn=='N'){
+					fin=1; entendido=0;park=0;//Vuelve a preguntar la seccion
+					}
+					else{
+					printf("No le he entendido, le preguntaremos de nuevo.\n");
+					}
+				}//Pregunta si quieres mas cosas
+				if (elementosComprados==0){
+				break;
+				}
+				while(park==1){
+					printf("Ha usado parking?  (si o no)\n");
+					fflush( stdin );
+					scanf(" %c", &sn );
+					if (sn=='s' || sn=='S'){
+						fint = time(NULL);
+   						delta = fint - inicio;//delta sera la diferencia te tiempo entre que el usuario empieza a comprar hasta que termina
+   						minutos=delta/60;
+   						segundos=delta-minutos*delta;
+						if(delta>120){//Si han pasado 2 minutos se cobrara el parking
+							printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
+							precioParking=2+(delta-120)*0.005;
+							sleep(2);
+							printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f\n",precioParking);
+							fin=0; entendido=0; park=0;
+						}
+						else{
+							if(minutos==0)
+								printf("Ha usado el parking durante %d segundos\n", segundos);
+							else
+								printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
+							sleep(2);
+							printf("Al ser menos de dos minutos su uso es gratuito\n");
+							fin=0; entendido=0; park=0;
+						}
+					}
+					else if(sn=='n' || sn=='N'){
+						fint = time(NULL);
+    					delta = fint - inicio;
+						fin=0; entendido=0; park=0;
+					}
+					else{
+					printf("No le he entendido, le preguntaremos de nuevo.\n");
+					}
+				}
+			}
+			if (elementosComprados==0)
+				break;
+			while(registrado==0){
+				printf("Tienes tarjeta de descuento?  (si o no)\n");
+				fflush( stdin );
+				scanf(" %c", &sn );
+				switch (sn){
+					case 's':
+					case 'S':
+						printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito 5656)\n");
+						scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
+						comparado=0;
+						for (k=0;k<nUsuario;k++){
+							if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
+								comparado++;
+								z=k; //Guarda la posicion en la cual esta el usuario
+							}
+						}	
+						if (comparado==1 && registro[z].contrasena==usuarios.contrasena){//Comparara las contrasenas cuando escribimos bien el usuario
+							aplicadescuento=1;
+							registrado=1;
+							printf("Usuario Correcto\n");
+							printf("Obtienes %i puntos por tu compra\n",puntos(ListaCompra,elementosComprados));						
+							usuarios.puntos=puntos(ListaCompra,elementosComprados)+registro[z].puntos;
+							paux = fopen("auxiliar.txt", "w");
+							if (paux == NULL){
+								printf("Error al abrir el fichero.\n");
+								return -1;	
+							}
+							else{
+								for(i=0;i<nUsuario;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+									if(strcmp(usuarios.usuario, registro[i].usuario)==0)
+									fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);//Introduce al usuario con sus puntos actualizados
+									else 
+									fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
+								} 
+							}
+							fclose(paux);
+							if(remove("usuarios.txt")==0)	//Borramos archivo
+								printf("Eliminado con exito\n");
+							else
+								printf("No se pudo eliminar\n");	
+							if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
+								printf("Cambiado con exito\n");
+							else
+								printf("No se pudo cambiar\n");
+						}
+						else{
+							if (comparado==0)
+							printf("El nombre de usuario %s no esta registrado\n",usuarios.usuario);
+							else
+							printf("Error al introducir contrasena\n");
+						}
+						break;
+					case 'n':
+					case 'N':
+						printf("Quieres una tarjeta de descuento? (si o no)\n");
+						fflush( stdin );
+						scanf(" %c", &sn );
+						if(sn=='s' || sn=='S'){
+							printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo 56565)\n");
+							scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
+							comparado=0;
+							while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
+								for (k=0;k<nUsuario;k++){
+									if(strcmp(usuarios.usuario,registro[k].usuario)==0){  //Compara el usuario introducido con los usuarios que ya existian
+										comparado++;
+									}
+								}
+								if (comparado==0){
+									usuarionuevo=1;
+								}
+								else{
+									printf("El usuario %s ya existe, escribe otro usuario y contrasena\n",usuarios.usuario);//Si coincide con un usuario existente, te pide que escribas uno nuevo
+									scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
+									comparado=0;
+								}
+							}
+							registrado=1;
+							usuarios.puntos=puntos(ListaCompra,elementosComprados);//Se asignan los puntos obtenidos por la compra
+							printf("Ha obtenido %i puntos\n",usuarios.puntos);
+							paux = fopen("auxiliar.txt", "w");
+							if (paux == NULL){
+								printf("Error al abrir el fichero.\n");
+								return -1;	
+							}
+							else{
+								for(i=0;i<nUsuario+1;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+									if(i<nUsuario)
+										fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);//Copia los usuarios que ya estaban en su mismo lugar
+									else 
+										fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);//Agrega el nuevo usuario
+								} 
+							}
+							fclose(paux);
+							if(remove("usuarios.txt")==0)	//Borramos archivo
+								printf("Eliminado con exito\n");
+							else
+								printf("No se pudo eliminar\n");	
+							if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
+								printf("Cambiado con exito\n");
+							else
+								printf("No se pudo cambiar\n");
+						}
+						else if(sn=='n' || sn=='N'){
+							registrado=1;
+						}
+						break;
+					default:
+						printf("No le hemos entendido\n");
+						break;
+				}
+			}//Acaba while registro
+			system("cls");//Limpia pantalla
+			if (elementosComprados==0)
+				break;
+			printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
+			sleep(2);
+			if (elementosComprados==0)
+				break;
+			precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
 			break;
 		case 'p':
 		case 'P':
-			printf("Elija el articulo que desee de la seccion de pescaderia\n");
-			printLista(lista_pescado, nPes);
-			anadir_a_lista(lista_pescado, (lugarLista+elementosComprados), elementosComprados,nPes);
-			break;
-		case 'f':
-		case 'F':
-			printf("Elija el articulo que desee de la seccion de fruteria\n");
-			printLista(lista_fruta, nFru);
-			anadir_a_lista(lista_fruta, (lugarLista+elementosComprados), elementosComprados,nFru);
-			break;
-		case 'c':
-		case 'C':
-			printf("Elija el articulo que desee de la seccion de carniceria\n");
-			printLista(lista_carne, nCa);
-			anadir_a_lista(lista_carne, (lugarLista+elementosComprados), elementosComprados,nCa);
-			break;
-		default:
-			printf("No tenemos esa seccion\n");
-			elementosComprados--;//Evitamos la suma de un articulo nulo
-			break;
-	}
-	elementosComprados++;//Pasar a la siguiente posicion de la lista de la compra
-	entendido=1;	
-		while (entendido==1)
-	{
-	printf("Ha terminado su compra?  (si o no)\n");
-	fflush( stdin );
-	scanf(" %c", &sn );
-		if (sn=='s' || sn=='S'){
-			fin=0; entendido=0;park=1;//Muestra la cantidad a pagar
-			lugarLista++;
-		}
-		else if(sn=='n' || sn=='N'){
-				fin=1; entendido=0;park=0;//Vuelve a preguntar la seccion
-			}
-		else{
-		printf("No le he entendido, le preguntaremos de nuevo.\n");
-			}
-	}//Pregunta si quieres mas cosas
-	while(park==1)
-		{
-			printf("Ha usado parking?  (si o no)\n");
-			fflush( stdin );
-			scanf(" %c", &sn );
-		if (sn=='s' || sn=='S'){
-			fint = time(NULL);
-   			delta = fint - inicio;//delta sera la diferencia te tiempo entre que el usuario empieza a comprar hasta que termina
-   			minutos=delta/60;
-   			segundos=delta-minutos*delta;
-   			
-			if(delta>120){//Si han pasado 2 minutos se cobrara el parking
-			printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
-			precioParking=2+(delta-120)*0.005;
-			sleep(2);
-			printf("Al ser mas de dos minutos su uso tiene un coste de: %.2f\n",precioParking);
-			fin=0; entendido=0; park=0;
-			}
-		else{
-			if(minutos==0){
-				printf("Ha usado el parking durante %d segundos\n", segundos);
-				}
-				else{
-				printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
-				}
-			sleep(2);
-			printf("Al ser menos de dos minutos su uso es gratuito\n");
-			fin=0; entendido=0; park=0;
-			}
-		}
-		else if(sn=='n' || sn=='N'){
-			fint = time(NULL);
-    		delta = fint - inicio;
-			fin=0; entendido=0; park=0;
-			}
-		else{
-		printf("No le he entendido, le preguntaremos de nuevo.\n");
-			}
-		}
-	}
-	while(registrado==0){
-		printf("Tienes tarjeta de descuento?  (si o no)\n");
-		fflush( stdin );
-		scanf(" %c", &sn );
-		switch (sn){
-			case 's':
-			case 'S':
-				printf("Escribe tu Usuario y Contrasena (Ejemplo: pepito 5656)\n");
+			system("cls");//Limpiamos pantalla
+			system("Color E");//Cambiamos de color
+			printf("Introduce tu usuario y contraseña (Ejemplo: pepe 239)\n");
+			while(registrado==0){
 				scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
 				comparado=0;
 				for (k=0;k<nUsuario;k++){
-					printf("%s\n",registro[k].usuario);
-					printf("%s\n",usuarios.usuario);
-					if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
+					if(strcmp(usuarios.usuario,registro[k].usuario)==0){
 					comparado++;
 					z=k; //Guarda la posicion en la cual esta el usuario
 					}
 				}
-				printf("%i\n",comparado);
-				if (comparado==1 && registro[z].contrasena==usuarios.contrasena){//Comparara las contrasenas cuando escribimos bien el usuario
+				if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
 					aplicadescuento=1;
 					registrado=1;
-					printf("Usuario Correcto\n");
-					printf("Obtienes %i puntos por tu compra\n",puntos(ListaCompra,elementosComprados));						
-					usuarios.puntos=puntos(ListaCompra,elementosComprados)+registro[z].puntos;
-					paux = fopen("auxiliar.txt", "w");
-					if (paux == NULL){
-						printf("Error al abrir el fichero.\n");
-						return -1;	
-					}
-					else{
-						for(i=0;i<nUsuario;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
-							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
-							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);//Introduce al usuario con sus puntos actualizados
-							else 
-							fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
-						} 
-					}
-					fclose(paux);
-					if(remove("usuarios.txt")==0)	//Borramos archivo
-						printf("Eliminado con exito\n");
-					else
-						printf("No se pudo eliminar\n");
-					
-					if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
-						printf("Cambiado con exito\n");
-					else
-						printf("No se pudo cambiar\n");
-					
-				}
-				else 
-					if (comparado==0)
-				printf("El nombre de usuario %s no esta registrado\n",usuarios.usuario);
-					else
-				printf("Error al introducir contrasena\n");
-				break;
-			case 'n':
-			case 'N':
-				printf("Quieres una tarjeta de descuento? (si o no)\n");
-				fflush( stdin );
-				scanf(" %c", &sn );
-				if(sn=='s' || sn=='S'){
-					printf("Escribe un nuevo Usuario y Contrasena (Ejemplo: pepitonuevo 56565)\n");
-					scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
-					comparado=0;
-						while (usuarionuevo==0){//Pide nuevo usuario mientras el nombre de usuario este ya cogido
-							for (k=0;k<nUsuario;k++){
-								if(strcmp(usuarios.usuario,registro[k].usuario)==0){  //Compara el usuario introducido con los usuarios que ya existian
-									comparado++;
+					printf("Bienvenido %s, usted tiene %i puntos\n",usuarios.usuario,registro[z].puntos);
+					printListaRegalos(lista_regalos,nReg);
+					printf("Elige un articulo\n");
+					j=0;
+					while(j==0){
+						fflush( stdin );
+						scanf("%i",&numeroProducto);//Te pide el numero del producto
+						if (numeroProducto>0 && numeroProducto<nReg+1){
+							if(registro[z].puntos>=lista_regalos[numeroProducto-1].puntos){
+								registro[z].puntos-=lista_regalos[numeroProducto-1].puntos;//Resta los puntos al usuario tras la compra
+								paux = fopen("auxiliar.txt", "w");
+								if (paux == NULL){
+									printf("Error al abrir el fichero.\n");
+									return -1;	
 								}
+								else{
+									for(i=0;i<nUsuario;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
+										if(strcmp(usuarios.usuario, registro[i].usuario)==0)
+											fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,registro[z].puntos);
+										else 
+											fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
+									} 
+								}
+								fclose(paux);
+								if(remove("usuarios.txt")==0)	//Borramos archivo
+									printf("Eliminado con exito\n");
+								else
+									printf("No se pudo eliminar\n");	
+								if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
+									printf("Cambiado con exito\n");
+								else
+									printf("No se pudo cambiar\n");
+								j=1;
+								printf("Ha obtenido %s",lista_regalos[numeroProducto-1].nombre);
+								sleep(2);	
 							}
-							if (comparado==0){
-								usuarionuevo=1;
+							else
+								printf("Puntos insuficientes\n");
+								sleep(2);
+								j=1;
 							}
-							else{
-								printf("El usuario %s ya existe, escribe otro usuario y contrasena\n",usuarios.usuario);//Si coincide con un usuario existente, te pide que escribas uno nuevo
-								scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
-								comparado=0;
-							}
-						}
-					registrado=1;
-					paux = fopen("auxiliar.txt", "w");
-					if (paux == NULL){
-						printf("Error al abrir el fichero.\n");
-						return -1;	
-					}
-					else{
-						for(i=0;i<nUsuario+1;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
-							if(i<nUsuario)
-							fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);//Copia los usuarios que ya estaban en su mismo lugar
-							else 
-							fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,usuarios.puntos);//Agrega el nuevo usuario
-						} 
-					}
-					fclose(paux);
-					if(remove("usuarios.txt")==0)	//Borramos archivo
-						printf("Eliminado con exito\n");
-					else
-						printf("No se pudo eliminar\n");
-					
-					if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
-						printf("Cambiado con exito\n");
-					else
-						printf("No se pudo cambiar\n");
-				}
-				else if(sn=='n' || sn=='N'){
-					registrado=1;
-					}
-					break;
-			default:
-			printf("No le hemos entendido\n");
-			break;
-		}
-	}//Acaba while registro
-printLista(ListaCompra, elementosComprados);//Imprime la lista de la compra
-//printf("%s %i",registro[0].usuario,registro[0].,contrasena); 
-sleep(3);
-precioTotal(ListaCompra, elementosComprados, precioParking, aplicadescuento);//Indica la cantidad a pagar
-break;
-case 'p':
-case 'P':
-	printf("Introduce tu usuario y contraseña (Ejemplo: pepe 239)\n");
-	while(registrado==0){
-		scanf("%s %i",usuarios.usuario,&usuarios.contrasena);
-		comparado=0;
-		for (k=0;k<nUsuario;k++){
-			printf("%s\n",registro[k].usuario);
-			printf("%s\n",usuarios.usuario);
-			if(strcmp(usuarios.usuario,registro[k].usuario)==0){ 
-			comparado++;
-			z=k; //Guarda la posicion en la cual esta el usuario
-			}
-		}
-		printf("%i\n",comparado);
-		if (comparado==1 && registro[z].contrasena==usuarios.contrasena){
-			aplicadescuento=1;
-			registrado=1;
-			printf("Bienvenido %s, usted tiene %i puntos\n",usuarios.usuario,registro[z].puntos);
-			printListaRegalos(lista_regalos,nReg);
-			printf("Elige un articulo\n");
-			j=0;
-			while(j==0){
-				fflush( stdin );
-				scanf("%i",&numeroProducto);//Te pide el numero del producto
-				if (numeroProducto>0 && numeroProducto<nReg+1){
-					if(registro[z].puntos>=lista_regalos[numeroProducto-1].puntos){
-						registro[z].puntos-=lista_regalos[numeroProducto-1].puntos;
-						paux = fopen("auxiliar.txt", "w");
-						if (paux == NULL){
-							printf("Error al abrir el fichero.\n");
-							return -1;	
-						}
-						else{
-							for(i=0;i<nUsuario;i++){ //Vuelve a escribir el fichero con los nuevos puntos del usuario tras la compra
-							if(strcmp(usuarios.usuario, registro[i].usuario)==0)
-									fprintf(paux,"%i;%s;%i\n",usuarios.contrasena,usuarios.usuario,registro[z].puntos);
-								else 
-									fprintf(paux,"%i;%s;%i\n",registro[i].contrasena,registro[i].usuario,registro[i].puntos);
-							} 
-						}
-						fclose(paux);
-						if(remove("usuarios.txt")==0)	//Borramos archivo
-							printf("Eliminado con exito\n");
 						else
-							printf("No se pudo eliminar\n");
-						
-						if(rename("auxiliar.txt","usuarios.txt")==0)//Cambiamos nombre al archivo
-							printf("Cambiado con exito\n");
-						else
-							printf("No se pudo cambiar\n");
-						j=1;
-						printf("Ha obtenido %s",lista_regalos[numeroProducto-1].nombre);
-						sleep(2);
-						
+							printf("Numero incorrecto\n");
+							printf("Vuelve a introducir numero\n");
+							sleep(2);
+						}
 					}
-					else
-					printf("Puntos insuficientes\n");
+				else{
+					printf("Error al introducir usuario y contrasena");
+					registrado=1;
 					sleep(2);
-					j=1;
 				}
-				else
-				printf("Numero incorrecto\n");
-				sleep(2);
 			}
-		}
-		else{
-		printf("Error al introducir usuario y contraseña");
-		registrado=1;
-		sleep(2);
-		}
-	}
-	break;
-default:
-	printf("No le hemos entendido\n");
-	sleep(2);
-}//switch comprar regalos
+			break;
+		default:
+			printf("No le hemos entendido\n");
+			sleep(1);
+	}//switch comprar regalos
 }//while repetitivo
 }//Acaba main
 

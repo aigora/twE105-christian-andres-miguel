@@ -3,3 +3,7 @@
 10;pepe;96
 12;tejinero;234
 43;manu;0
+1111;Usuario_ejemplo;2
+1111;usuario_paraelejemplo;7
+2222;ejemplo2;1
+4444;ejemplo4;0

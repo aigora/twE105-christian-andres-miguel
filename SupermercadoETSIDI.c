@@ -137,7 +137,7 @@ scanf(" %c",&lugar);
 				break;
 				}
 				while(park==1){
-					printf("Ha usado parking?  (si o no)\n");
+					printf("Has usado parking?  (si o no)\n");
 					fflush( stdin );
 					scanf(" %c", &sn );
 					if (sn=='s' || sn=='S'){
@@ -145,7 +145,7 @@ scanf(" %c",&lugar);
    						delta = fint - inicio;//delta sera la diferencia te tiempo entre que el usuario empieza a comprar hasta que termina
    						minutos=delta/60;
    						segundos=delta-minutos*delta;
-						if(delta>120){//Si han pasado 2 minutos se cobrara el parking
+						if(minutos>=2){//Si han pasado 2 minutos se cobrara el parking
 							printf("Ha usado el parking durante %d minutos y %d segundos \n", minutos, segundos);
 							precioParking=2+(delta-120)*0.005;
 							sleep(2);
